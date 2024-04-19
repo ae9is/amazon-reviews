@@ -177,11 +177,11 @@ public class ItemParser extends FileParser {
         }
       }
     }
-    for (String key: new TreeSet<String>(categoryIndexMap.keySet())) {
-      int value = categoryIndexMap.get(key);
+    for (String category: new TreeSet<String>(categoryIndexMap.keySet())) {
+      int categoryIndex = categoryIndexMap.get(category);
       writeLine(categoryWriter, new String[] {
-        asString(value),
-        key,
+        asString(categoryIndex),
+        category,
       });
     }
     for (BufferedWriter writer : allWriters) {

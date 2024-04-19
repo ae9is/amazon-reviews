@@ -22,7 +22,8 @@ public class FileHeaders {
       "time_stamp", "helpful_vote", "verified_purchase" };
   final String[] reviewImage = new String[] { "reviewimage_id", "small_image_url", "medium_image_url",
       "large_image_url", "attachment_type" };
-  final String[] users = new String[] { "user_id", "username" };
+  final String[] users = new String[] { "user_id", "amzn_uid" };
+  final String[] userHasReview = new String[] { "user_id", "review_id" };
 
   public String getCategoryHasItem() {
     return String.join(this.separator, categoryHasItem) + "\n";
@@ -74,5 +75,9 @@ public class FileHeaders {
 
   public String getUsers() {
     return String.join(this.separator, users) + "\n";
+  }
+
+  public String getUserHasReview() {
+    return String.join(this.separator, userHasReview) + "\n";
   }
 }

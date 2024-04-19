@@ -18,6 +18,7 @@ public abstract class FileParser {
   final static int MAX_FAILED_LINES = 5;
   final static String separator = ""; // "\u001e", record separator, used here as postgres delimiter
   final static String quote = ""; // "\u001f", unit separator, used here as postgres quote character
+  final static String nullchar = "\u0000"; // null character, can't be used in postgres fields
 
   // abstract
   static void parse(String dataFilename, String outputFolder) throws IOException {
@@ -28,7 +29,7 @@ public abstract class FileParser {
     List<String> sanitised = new ArrayList<String>();
     for (String val: values) {
       if (val != null) {
-        sanitised.add(val.replace(separator, "").replace("\n", ""));
+        sanitised.add(val.replace(separator, "").replace("\n", "").replace(nullchar, ""));
       } else {
         sanitised.add("");
       }
