@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:16
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    # Note:
+    # Postgres environment variables only respected when volume first created,
+    #  after which the database and user are already created.
+    # Also, changing POSTGRES_USER doesn't change the container's linux system user, and complicates things.
+    #  ref: https://github.com/docker-library/docs/tree/master/postgres#postgres_user
+    #  ref: https://github.com/docker-library/docs/tree/master/postgres#arbitrary---user-notes
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: reviews
+#      POSTGRES_DB: reviews
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres-export:/export
+
+volumes:
+  postgres:

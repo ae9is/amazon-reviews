@@ -1,8 +1,6 @@
-# amazon-reviews
+# Data
 
-Demo Spring GraphQL API based on normalising the [Amazon Reviews 2023 dataset](https://github.com/hyp1231/AmazonReviews2023) in Postgres.
-
-## Data 
+Directory to put downloaded raw data, and for generated database import CSV files.
 
 See: https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/tree/main
 
