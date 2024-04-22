@@ -10,7 +10,7 @@ case "${choice}" in
 esac
 
 # Make sure to fix permissions on your mounted volume if docker is run as root
-cp migrations/*.sql postgres-export || { echo "Cannot copy new migrations to docker mount point, quitting!"; exit 1; }
+cp migrations/*.sql data/export || { echo "Cannot copy new migrations to docker mount point, quitting!"; exit 1; }
 
 started=`date`
 # Migrations run in reverse

@@ -5,10 +5,10 @@ This folder contains PostgreSQL SQL scripts to export and drop, and then create 
 The following scripts run all the *.up.sql or *.down.sql files against the docker database instance:
 
 ```bash
-# Create database tables and load data in ./postgres-export
+# Create database tables and load data in data/export
 ./docker-db-up.sh
 
-# Export data to ./postgres-export and drop database tables
+# Export data to data/export and drop database tables
 ./docker-db-down.sh
 ```
 

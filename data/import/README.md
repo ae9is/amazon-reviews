@@ -1,4 +1,4 @@
-# Data
+# data/import
 
 Directory to put downloaded raw data, and for generated database import CSV files.
 

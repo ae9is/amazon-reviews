@@ -13,11 +13,11 @@ esac
 read -p "Wipe and replace data (y/N)?" wipe
 
 # Make sure to fix permissions on your mounted volume if docker is run as root
-cp migrations/*.sql postgres-export || { echo "Cannot copy new migrations to docker mount point, quitting!"; exit 1; }
+cp migrations/*.sql data/export || { echo "Cannot copy new migrations to docker mount point, quitting!"; exit 1; }
 if [ "${wipe}" ]; then
   GROUP=`id -gn`
-  chown "${USER}" data/*.csv && chgrp "${GROUP}" data/*.csv || echo "Warning: Cannot fix data file permissions in docker mount"
-  rsync -a data/*.csv postgres-export
+  chown "${USER}" data/import/*.csv && chgrp "${GROUP}" data/import/*.csv || echo "Warning: Cannot fix data file permissions"
+  rsync -a data/import/*.csv data/export
 fi
 
 started=`date`

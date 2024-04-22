@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:16
-    container_name: postgres
+    container_name: reviews-postgres
     ports:
       - "5432:5432"
     # Note:
@@ -17,8 +17,14 @@ services:
 #      POSTGRES_PASSWORD: reviews
 #      POSTGRES_DB: reviews
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-      - ./postgres-export:/export
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./data/export:/export
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U postgres -d ${POSTGRES_DB}'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
 
 volumes:
   postgres:

@@ -64,8 +64,7 @@ out/
 *bak
 *.txt
 .env
-postgres-data
-postgres-export
+data/
 *.json
 *.jsonl
 *.csv
