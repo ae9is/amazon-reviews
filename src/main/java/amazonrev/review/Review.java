@@ -1,18 +1,20 @@
-package amazonrev.types.review;
+package amazonrev.review;
+
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record Review(
-  long id,
-  int rating,
+  Long id,
+  Integer rating,
   String title,
   String text,
-  Image[] images,
+  ReviewImage[] images,
   String asin,
   String parentAsin,
   @JsonProperty("user_id")
   String userID,
-  long timestamp,
-  int helpfulVote,
-  boolean verifiedPurchase
+  Date timestamp,
+  Long helpfulVote,
+  Boolean verifiedPurchase
 ) {}

@@ -1,7 +1,7 @@
-package amazonrev.types.item;
+package amazonrev.item;
 
 public record Image(
-  long id,
+  Long id,
   String thumb,
   String large,
   String variant,

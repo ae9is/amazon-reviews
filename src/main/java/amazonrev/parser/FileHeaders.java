@@ -19,7 +19,7 @@ public class FileHeaders {
   final String[] itemAuthor = new String[] { "itemauthor_id", "avatar", "name", "about" };
   final String[] reviewHasReviewImage = new String[] { "review_id", "reviewimage_id" };
   final String[] review = new String[] { "review_id", "rating", "title", "bodytext", "asin", "parent_asin", "username",
-      "time_stamp", "helpful_vote", "verified_purchase" };
+      "time_stamp_millis", "helpful_vote", "verified_purchase" };
   final String[] reviewImage = new String[] { "reviewimage_id", "small_image_url", "medium_image_url",
       "large_image_url", "attachment_type" };
   final String[] users = new String[] { "user_id", "amzn_uid" };

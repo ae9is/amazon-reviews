@@ -1,4 +1,4 @@
-package amazonrev.types.item;
+package amazonrev.item;
 
 import java.util.HashMap;
 
@@ -16,8 +16,8 @@ public record Item(
   Video[] videos,
   String store,
   String[] categories,
-  HashMap<String, ?> details,
+  HashMap<String, Object> details,
   String parentAsin,
-  Object boughtTogether, // Always null in dataset?
   Author author
-) {}
+) {
+}

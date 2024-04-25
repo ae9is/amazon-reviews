@@ -1,8 +1,11 @@
-package amazonrev.types.item;
+package amazonrev.item;
 
 public record Author(
-  long id,
+  Long id,
   String avatar,
   String name,
   String[] about
-) {}
+) {
+  public Author {
+  }
+}

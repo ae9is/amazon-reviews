@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
-import amazonrev.types.review.Image;
-import amazonrev.types.review.Review;
+import amazonrev.review.ReviewImage;
+import amazonrev.review.Review;
 import amazonrev.util.Log;
 
 /**
@@ -76,11 +76,11 @@ public class ReviewParser extends FileParser {
               review.text(),
               review.asin(),
               review.parentAsin(),
-              asString(review.timestamp()),
+              asString(review.timestamp().getTime()),
               asString(review.helpfulVote()),
               asString(review.verifiedPurchase()),
             });
-            for (Image image: review.images()) {
+            for (ReviewImage image: review.images()) {
               imageCount++;
               writeLine(reviewImageWriter, new String[] {
                 asString(imageCount),
@@ -133,8 +133,8 @@ public class ReviewParser extends FileParser {
   }
 
   public static void main(String[] args) throws IOException {
-    final String dataFilename = "data/Musical_Instruments.jsonl";
-    final String outputFolder = "data";
+    final String dataFilename = "data/import/Musical_Instruments.jsonl";
+    final String outputFolder = "data/import";
     parse(dataFilename, outputFolder);
   }
 }

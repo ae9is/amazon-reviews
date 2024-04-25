@@ -1,7 +1,7 @@
-package amazonrev.types.review;
+package amazonrev.review;
 
-public record Image(
-  long id,
+public record ReviewImage(
+  Long id,
   String smallImageURL,
   String mediumImageURL,
   String largeImageURL,

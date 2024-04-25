@@ -15,11 +15,11 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
+import amazonrev.item.Author;
+import amazonrev.item.Image;
+import amazonrev.item.MainCategory;
+import amazonrev.item.Video;
 import amazonrev.parser.types.RawItem;
-import amazonrev.types.item.Author;
-import amazonrev.types.item.Image;
-import amazonrev.types.item.MainCategory;
-import amazonrev.types.item.Video;
 import amazonrev.util.Log;
 
 /**
@@ -196,7 +196,7 @@ public class ItemParser extends FileParser {
   }
 
   public static void main(String[] args) throws IOException {
-    final String dataFilename = "data/meta_Musical_Instruments.jsonl";
+    final String dataFilename = "data/import/meta_Musical_Instruments.jsonl";
     final String outputFolder = "data";
     parse(dataFilename, outputFolder);
   }

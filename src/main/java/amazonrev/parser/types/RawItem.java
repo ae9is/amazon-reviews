@@ -2,11 +2,11 @@ package amazonrev.parser.types;
 
 import java.util.HashMap;
 
-import amazonrev.types.item.Author;
-import amazonrev.types.item.Image;
-import amazonrev.types.item.Video;
+import amazonrev.item.Author;
+import amazonrev.item.Image;
+import amazonrev.item.Video;
 
-// Note: Can't extend records. Modified from amazonrev.types.item.Item.
+// Note: Can't extend records. Modified from amazonrev.item.Item.
 public record RawItem(
   Long id,
   String mainCategory,

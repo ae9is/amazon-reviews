@@ -5,8 +5,11 @@ CREATE TABLE IF NOT EXISTS review (
   bodytext TEXT,
   asin TEXT,
   parent_asin TEXT,
-  time_stamp BIGINT,
+  time_stamp_millis BIGINT,
   helpful_vote BIGINT,
   verified_purchase BOOLEAN
 );
 COPY review FROM '/export/review.csv' WITH CSV DELIMITER E'\x1e' QUOTE E'\x1f' NULL AS '' HEADER;
+ALTER TABLE review ADD COLUMN time_stamp TIMESTAMPTZ;
+UPDATE review SET time_stamp = TO_TIMESTAMP(time_stamp_millis / 1000.0);
+ALTER TABLE review DROP COLUMN time_stamp_millis;

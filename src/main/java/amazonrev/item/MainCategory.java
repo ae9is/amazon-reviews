@@ -1,4 +1,4 @@
-package amazonrev.types.item;
+package amazonrev.item;
 
 import java.io.IOException;
 

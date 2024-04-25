@@ -1,9 +1,9 @@
-package amazonrev.types.item;
+package amazonrev.item;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record Video(
-  long id,
+  Long id,
   String title,
   String url,
   @JsonProperty("user_id")
