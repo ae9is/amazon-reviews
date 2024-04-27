@@ -1,6 +1,6 @@
 package amazonrev.item;
 
-public record Image(
+public record ItemImage(
   Long id,
   String thumb,
   String large,

@@ -12,12 +12,12 @@ public record Item(
   String[] features,
   String[] description,
   Double price,
-  Image[] images,
-  Video[] videos,
+  ItemImage[] images,
+  ItemVideo[] videos,
   String store,
   String[] categories,
   HashMap<String, Object> details,
   String parentAsin,
-  Author author
+  ItemAuthor author
 ) {
 }

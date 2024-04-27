@@ -2,9 +2,9 @@ package amazonrev.parser.types;
 
 import java.util.HashMap;
 
-import amazonrev.item.Author;
-import amazonrev.item.Image;
-import amazonrev.item.Video;
+import amazonrev.item.ItemAuthor;
+import amazonrev.item.ItemImage;
+import amazonrev.item.ItemVideo;
 
 // Note: Can't extend records. Modified from amazonrev.item.Item.
 public record RawItem(
@@ -17,12 +17,12 @@ public record RawItem(
   String[] features,
   String[] description,
   String price,
-  Image[] images,
-  Video[] videos,
+  ItemImage[] images,
+  ItemVideo[] videos,
   String store,
   String[] categories,
   HashMap<String, ?> details,
   String parentAsin,
   Object boughtTogether, // Always null in dataset?
-  Author author
+  ItemAuthor author
 ) {}

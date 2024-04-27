@@ -2,7 +2,7 @@ package amazonrev.item;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record Video(
+public record ItemVideo(
   Long id,
   String title,
   String url,

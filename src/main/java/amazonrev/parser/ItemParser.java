@@ -15,10 +15,10 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
-import amazonrev.item.Author;
-import amazonrev.item.Image;
+import amazonrev.item.ItemAuthor;
+import amazonrev.item.ItemImage;
 import amazonrev.item.MainCategory;
-import amazonrev.item.Video;
+import amazonrev.item.ItemVideo;
 import amazonrev.parser.types.RawItem;
 import amazonrev.util.Log;
 
@@ -125,7 +125,7 @@ public class ItemParser extends FileParser {
               toJson(item.details(), mapper),
               item.parentAsin(),
             });
-            for (Image image: item.images()) {
+            for (ItemImage image: item.images()) {
               imageCount++;
               writeLine(itemImageWriter, new String[] {
                 asString(imageCount),
@@ -139,7 +139,7 @@ public class ItemParser extends FileParser {
                 asString(imageCount),
               });
             }
-            for (Video video: item.videos()) {
+            for (ItemVideo video: item.videos()) {
               videoCount++;
               writeLine(itemVideoWriter, new String[] {
                 asString(videoCount),
@@ -152,7 +152,7 @@ public class ItemParser extends FileParser {
                 asString(videoCount),
               });
             }
-            Author author = item.author();
+            ItemAuthor author = item.author();
             if (author != null) {
               authorCount++;
               writeLine(itemAuthorWriter, new String[] {
