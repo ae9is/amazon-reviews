@@ -1,0 +1,126 @@
+# See GraphQLConfig.java for wiring for scalars
+scalar Long
+scalar JSON
+scalar DateTime
+  @specifiedBy(url: "https://scalars.graphql.org/andimarek/date-time.html")
+
+type Query {
+  itemSummariesByCategory(category: String!, params: ItemPaginationInput): ItemSummaryResult
+  reviewsByAsin(asin: String!, params: ReviewPaginationInput): ReviewResult
+  itemById(id: Long!): Item
+  reviewById(id: Long!): Review
+}
+
+type ItemSummaryResult implements PagedResult {
+  list: [ItemSummary]
+  cursor: String!
+}
+
+type ReviewResult implements PagedResult {
+  list: [Review]
+  cursor: String!
+}
+
+interface PagedResult {
+  list: [Pageable]
+  cursor: String!
+}
+
+union Pageable = ItemSummary | Review
+
+enum ReviewSort {
+  VOTES
+  NEWEST
+}
+
+input ReviewPaginationInput {
+  cursor: String
+  limit: Int
+  sort: ReviewSort
+}
+
+type Review {
+  id: Long
+  rating: Int
+  title: String
+  text: String
+  images: [ReviewImage]
+  asin: String
+  parentAsin: String
+  userID: String
+  timestamp: DateTime
+  helpfulVote: Long
+  verifiedPurchase: Boolean
+}
+
+type ReviewImage {
+  id: Long
+  smallImageURL: String
+  mediumImageURL: String
+  largeImageURL: String
+  attachmentType: String
+}
+
+input ItemPaginationInput {
+  cursor: String
+  limit: Int
+  sort: ItemSort
+}
+
+enum ItemSort {
+  AVG_RATING
+  RATING_NUMBER
+  LOW_PRICE
+}
+
+type Item {
+  id: Long
+  mainCategory: String
+  title: String
+  subtitle: String
+  averageRating: Float
+  ratingNumber: Long
+  features: [String]
+  description: [String]
+  price: Float
+  images: [ItemImage]
+  videos: [ItemVideo]
+  store: String
+  categories: [String]
+  details: JSON
+  parentAsin: String
+  author: ItemAuthor
+}
+
+type ItemSummary {
+  id: Long
+  title: String
+  subtitle: String
+  averageRating: Float
+  ratingNumber: Long
+  price: Float
+  store: String
+  parentAsin: String
+}
+
+type ItemImage {
+  id: Long
+  thumb: String
+  large: String
+  variant: String
+  hiRes: String
+}
+
+type ItemVideo {
+  id: Long
+  title: String
+  url: String
+  creatorHandle: String
+}
+
+type ItemAuthor {
+  id: Long
+  avatar: String
+  name: String
+  about: [String]
+}
