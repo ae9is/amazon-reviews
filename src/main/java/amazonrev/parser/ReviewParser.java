@@ -10,10 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import amazonrev.review.ReviewImage;
 import amazonrev.review.Review;
@@ -27,6 +30,9 @@ public class ReviewParser extends FileParser {
   static void parse(String dataFilename, String outputFolder) throws IOException {
     JsonMapper mapper = new JsonMapper();
     mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+    mapper.registerModule(new JavaTimeModule());
+    mapper.disable(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS);
+    mapper.disable(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS);
     BufferedReader reader = new BufferedReader(new FileReader(dataFilename));
     BufferedWriter reviewWriter = new BufferedWriter(new FileWriter(new File(outputFolder + "/review.csv")));
     BufferedWriter reviewImageWriter = new BufferedWriter(new FileWriter(new File(outputFolder + "/reviewimage.csv")));
@@ -71,16 +77,16 @@ public class ReviewParser extends FileParser {
             reviewCount++;
             writeLine(reviewWriter, new String[] {
               asString(reviewCount),
-              asString(review.rating()),
-              review.title(),
-              review.text(),
-              review.asin(),
-              review.parentAsin(),
-              asString(review.timestamp().getTime()),
-              asString(review.helpfulVote()),
-              asString(review.verifiedPurchase()),
+              asString(review.getRating()),
+              review.getTitle(),
+              review.getText(),
+              review.getAsin(),
+              review.getParentAsin(),
+              asString(review.getTimestamp().toInstant().toEpochMilli()),
+              asString(review.getHelpfulVote()),
+              asString(review.getVerifiedPurchase()),
             });
-            for (ReviewImage image: review.images()) {
+            for (ReviewImage image: review.getImages()) {
               imageCount++;
               writeLine(reviewImageWriter, new String[] {
                 asString(imageCount),
@@ -94,7 +100,7 @@ public class ReviewParser extends FileParser {
                 asString(imageCount),
               });
             }
-            String amznUserID = review.userID();
+            String amznUserID = review.getUserID();
             if (amznUserID != null) {
               addKeyToIndexMap(userIndexMap, amznUserID);
               int uid = userIndexMap.get(amznUserID);
