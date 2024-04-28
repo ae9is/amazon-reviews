@@ -6,11 +6,17 @@ Demo Spring GraphQL API based on normalising the [Amazon Reviews 2023 dataset](h
 
 See: https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/tree/main
 
-Metadata (item info) file:
-https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/main/raw/meta_categories/meta_Musical_Instruments.jsonl?download=true
+The data needs to be downloaded and prepped for import into the database.
 
-Reviews data file:
-https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/main/raw/review_categories/Musical_Instruments.jsonl?download=true
+1. Download the following files to [data/import](data/import):
+    - [Metadata (item info) file](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/main/raw/meta_categories/meta_Musical_Instruments.jsonl?download=true)
+    - [Reviews data file](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/main/raw/review_categories/Musical_Instruments.jsonl?download=true)
+
+2. Then run the following task:
+
+    ```bash
+    make parse
+    ```
 
 ## Run
 

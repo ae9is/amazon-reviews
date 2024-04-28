@@ -197,7 +197,7 @@ public class ItemParser extends FileParser {
 
   public static void main(String[] args) throws IOException {
     final String dataFilename = "data/import/meta_Musical_Instruments.jsonl";
-    final String outputFolder = "data";
+    final String outputFolder = "data/import";
     parse(dataFilename, outputFolder);
   }
 }

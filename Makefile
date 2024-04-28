@@ -18,6 +18,9 @@ run:
 deps:
 	${GRADLE} dependencies
 
+parse:
+	${GRADLE} run
+
 docker-build:
 	${GRADLE} bootBuildImage --imageName=${NAME}/api
 
