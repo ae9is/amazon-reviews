@@ -19,7 +19,7 @@ deps:
 	${GRADLE} dependencies
 
 parse:
-	${GRADLE} run
+	${GRADLE} runParser
 
 docker-build:
 	${GRADLE} bootBuildImage --imageName=${NAME}/api
