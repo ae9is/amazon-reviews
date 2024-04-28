@@ -38,6 +38,8 @@ make run
 
 Open http://localhost:8080/graphiql?path=/graphql
 
+<img src="img/screenshot.png" width=400 />
+
 ## Database
 
 ### Migrations
