@@ -18,8 +18,7 @@ To run the Spring api and Postgres database via Docker:
 
 ```bash
 direnv allow
-make build
-make docker-build-gradle
+make docker-build
 docker compose up -d
 ```
 
@@ -33,7 +32,23 @@ make run
 
 Open http://localhost:8080/graphiql?path=/graphql
 
-## Database cli
+## Database
+
+### Migrations
+
+Bring up the database instance with Docker and then:
+
+```bash
+# Create and load tables
+bash docker-db-up.sh
+
+# Dump and drop tables
+bash docker-db-down.sh
+```
+
+### CLI
+
+To get a shell to the running Postgres instance:
 
 ```bash
 make docker-bash-db
