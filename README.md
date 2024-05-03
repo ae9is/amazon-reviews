@@ -1,6 +1,6 @@
 # amazon-reviews
 
-Demo Spring GraphQL API based on normalising the [Amazon Reviews 2023 dataset](https://github.com/hyp1231/AmazonReviews2023) in Postgres.
+Spring GraphQL API based on normalising the [Amazon Reviews 2023 dataset](https://github.com/hyp1231/AmazonReviews2023) in Postgres.
 
 ## Data 
 
@@ -9,14 +9,16 @@ See: https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/tree/main
 The data needs to be downloaded and prepped for import into the database.
 
 1. Download the following files to [data/import](data/import):
-    - [Metadata (item info) file](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/main/raw/meta_categories/meta_Musical_Instruments.jsonl?download=true)
-    - [Reviews data file](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/main/raw/review_categories/Musical_Instruments.jsonl?download=true)
+    - [Metadata (item info) file, Musical Instruments category only](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/main/raw/meta_categories/meta_Musical_Instruments.jsonl?download=true)
+    - [Reviews data file, Musical Instruments category only](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/main/raw/review_categories/Musical_Instruments.jsonl?download=true)
 
 2. Then run the following task:
 
     ```bash
     make parse
     ```
+
+*Note: Feel free to download, merge, and parse the data for **all** of the categories—but it's a lot bigger!*
 
 ## Run
 
