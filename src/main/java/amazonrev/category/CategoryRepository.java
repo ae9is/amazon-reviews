@@ -77,18 +77,18 @@ public class CategoryRepository {
           chi.category_id,
           count(chi.item_id)
         FROM
-          category_has_item as chi
+          category_has_item AS chi
         GROUP BY
           chi.category_id
       )
       SELECT
-        cat.category_id as id,
+        cat.category_id AS id,
         cat.label,
-        cic.count as itemCount,
-        NULL as ratingNumber
+        cic.count AS itemCount,
+        NULL AS ratingNumber
       FROM
-        """ + tableName + " as cat, " + """
-        category_item_count as cic
+        """ + tableName + " AS cat, " + """
+        category_item_count AS cic
       WHERE
         cat.category_id = cic.category_id
         AND (cic.count, cat.category_id) < (:sort_cursor, :id_cursor)
@@ -106,10 +106,10 @@ public class CategoryRepository {
     String tableName = main ? "maincategory" : "category";
     String query = """
       SELECT
-        category_id as id,
+        category_id AS id,
         label,
-        NULL as itemCount,
-        NULL as ratingNumber
+        NULL AS itemCount,
+        NULL AS ratingNumber
       FROM
     """ + tableName + """
       WHERE
@@ -129,8 +129,8 @@ public class CategoryRepository {
           cat.label,
           sum(item.rating_number)
         FROM
-      """ + tableName + " as cat, " + """
-          category_has_item as chi,
+      """ + tableName + " AS cat, " + """
+          category_has_item AS chi,
           item
         WHERE
           cat.category_id = chi.category_id
@@ -140,10 +140,10 @@ public class CategoryRepository {
           cat.label
       )
       SELECT
-        cat_rating.category_id as id,
+        cat_rating.category_id AS id,
         cat_rating.label,
-        cat_rating.sum as ratingNumber,
-        NULL as itemCount
+        cat_rating.sum AS ratingNumber,
+        NULL AS itemCount
       FROM
         cat_rating
       WHERE

@@ -27,20 +27,20 @@ public class ReviewRepository {
     ReviewSort sort = params.getSort();
     String query = """
         SELECT
-          review.review_id as id,
-          review.rating as rating,
+          review.review_id AS id,
+          review.rating AS rating,
           review.title title,
-          review.bodytext as text,
-          review.asin as asin,
-          review.parent_asin as parentAsin,
-          review.time_stamp as timestamp,
-          review.helpful_vote as helpfulVote,
-          review.verified_purchase as verifiedPurchase,
-          users.amzn_uid as userID
+          review.bodytext AS text,
+          review.asin AS asin,
+          review.parent_asin AS parentAsin,
+          review.time_stamp AS timestamp,
+          review.helpful_vote AS helpfulVote,
+          review.verified_purchase AS verifiedPurchase,
+          users.amzn_uid AS userID
         FROM
           review,
           users,
-          user_has_review as userrev
+          user_has_review AS userrev
         WHERE
           review.parent_asin = :parent_asin
           AND review.review_id = userrev.review_id
@@ -103,13 +103,13 @@ public class ReviewRepository {
     Integer limit = params.getLimit();
     String query = """
           SELECT
-            image.reviewimage_id as id,
-            image.small_image_url as smallImageUrl,
-            image.medium_image_url as mediumImageUrl,
-            image.large_image_url as largeImageUrl,
-            image.attachment_type as attachmentType
+            image.reviewimage_id AS id,
+            image.small_image_url AS smallImageUrl,
+            image.medium_image_url AS mediumImageUrl,
+            image.large_image_url AS largeImageUrl,
+            image.attachment_type AS attachmentType
           FROM
-            reviewimage as image,
+            reviewimage AS image,
             review_has_reviewimage
           WHERE
             review_has_reviewimage.review_id = :id
@@ -138,20 +138,20 @@ public class ReviewRepository {
   public Review getById(Long id) {
     Optional<Review> res = client.sql("""
         SELECT
-          review.review_id as id,
-          review.rating as rating,
+          review.review_id AS id,
+          review.rating AS rating,
           review.title title,
-          review.bodytext as text,
-          review.asin as asin,
-          review.parent_asin as parentAsin,
-          review.time_stamp as timestamp,
-          review.helpful_vote as helpfulVote,
-          review.verified_purchase as verifiedPurchase,
-          users.amzn_uid as userID
+          review.bodytext AS text,
+          review.asin AS asin,
+          review.parent_asin AS parentAsin,
+          review.time_stamp AS timestamp,
+          review.helpful_vote AS helpfulVote,
+          review.verified_purchase AS verifiedPurchase,
+          users.amzn_uid AS userID
         FROM
           review,
           users,
-          user_has_review as userrev
+          user_has_review AS userrev
         WHERE
           review.review_id = :review_id
           AND userrev.review_id = review.review_id

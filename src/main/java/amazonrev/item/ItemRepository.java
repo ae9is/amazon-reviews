@@ -27,14 +27,14 @@ public class ItemRepository {
     ItemSort sort = params.getSort();
     String query = """
         SELECT
-          item.item_id as id,
-          item.title as title,
-          item.subtitle as subtitle,
-          item.average_rating as averageRating,
-          item.rating_number as ratingNumber,
-          item.price as price,
-          item.store as store,
-          item.parent_asin as parentAsin
+          item.item_id AS id,
+          item.title AS title,
+          item.subtitle AS subtitle,
+          item.average_rating AS averageRating,
+          item.rating_number AS ratingNumber,
+          item.price AS price,
+          item.store AS store,
+          item.parent_asin AS parentAsin
         FROM
           item,
           category,
@@ -118,7 +118,7 @@ public class ItemRepository {
     String query = """
         WITH item_categories AS (
           SELECT
-            array_agg(label) as categories
+            array_agg(label) AS categories
           FROM
             item,
             category,
@@ -131,19 +131,19 @@ public class ItemRepository {
             AND category.category_id = category_has_item.category_id
         )
         SELECT
-          item.item_id as id,
-          category.label as mainCategory,
-          item.title as title,
-          item.subtitle as subtitle,
-          item.average_rating as averageRating,
-          item.rating_number as ratingNumber,
-          item.features as features,
-          item.descriptions as description,
-          item.price as price,
-          item.store as store,
-          item.details as details,
-          item.parent_asin as parentAsin,
-          item_categories.categories as categories
+          item.item_id AS id,
+          category.label AS mainCategory,
+          item.title AS title,
+          item.subtitle AS subtitle,
+          item.average_rating AS averageRating,
+          item.rating_number AS ratingNumber,
+          item.features AS features,
+          item.descriptions AS description,
+          item.price AS price,
+          item.store AS store,
+          item.details AS details,
+          item.parent_asin AS parentAsin,
+          item_categories.categories AS categories
         FROM
           item,
           category,
@@ -168,12 +168,12 @@ public class ItemRepository {
   public ItemAuthor getAuthorByItemId(Long id) {
     Optional<ItemAuthor> res = client.sql("""
           SELECT
-            auth.itemauthor_id as id,
-            auth.avatar as avatar,
-            auth.fullname as "name",
-            auth.about as about
+            auth.itemauthor_id AS id,
+            auth.avatar AS avatar,
+            auth.fullname AS "name",
+            auth.about AS about
           FROM
-            itemauthor as auth,
+            itemauthor AS auth,
             item_has_itemauthor
           WHERE
             item_has_itemauthor.item_id = :id
@@ -199,13 +199,13 @@ public class ItemRepository {
     Integer limit = params.getLimit();
     String query = """
           SELECT
-            image.itemimage_id as id,
-            image.thumb as thumb,
-            image.large as large,
-            image.variant as variant,
-            image.hires as hires
+            image.itemimage_id AS id,
+            image.thumb AS thumb,
+            image.large AS large,
+            image.variant AS variant,
+            image.hires AS hires
           FROM
-            itemimage as image,
+            itemimage AS image,
             item_has_itemimage
           WHERE
             item_has_itemimage.item_id = :id
@@ -244,12 +244,12 @@ public class ItemRepository {
     Integer limit = params.getLimit();
     String query = """
           SELECT
-            video.itemvideo_id as id,
-            video.title as title,
-            video.uri as url,
-            video.creator_handle as creatorHandle
+            video.itemvideo_id AS id,
+            video.title AS title,
+            video.uri AS url,
+            video.creator_handle AS creatorHandle
           FROM
-            itemvideo as video,
+            itemvideo AS video,
             item_has_itemvideo
           WHERE
             item_has_itemvideo.item_id = :id
