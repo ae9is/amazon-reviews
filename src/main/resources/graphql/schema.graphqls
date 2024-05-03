@@ -13,27 +13,20 @@ type Query {
   categories(main: Boolean, params: CategoryPaginationInput): CategoryResult
 }
 
-type ItemSummaryResult implements PagedResult {
+type ItemSummaryResult {
   list: [ItemSummary]
   cursor: String!
 }
 
-type ReviewResult implements PagedResult {
+type ReviewResult {
   list: [Review]
   cursor: String!
 }
 
-type CategoryResult implements PagedResult {
+type CategoryResult {
   list: [Category]
   cursor: String!
 }
-
-interface PagedResult {
-  list: [Pageable]
-  cursor: String!
-}
-
-union Pageable = ItemSummary | Review | Category
 
 enum ReviewSort {
   VOTES
