@@ -10,6 +10,7 @@ type Query {
   itemByAsin(asin: String!): Item
   reviewsByAsin(asin: String!, params: ReviewPaginationInput): ReviewResult
   reviewById(id: Long!): Review
+  categories(main: Boolean, params: CategoryPaginationInput): CategoryResult
 }
 
 type ItemSummaryResult implements PagedResult {
@@ -22,16 +23,33 @@ type ReviewResult implements PagedResult {
   cursor: String!
 }
 
+type CategoryResult implements PagedResult {
+  list: [Category]
+  cursor: String!
+}
+
 interface PagedResult {
   list: [Pageable]
   cursor: String!
 }
 
-union Pageable = ItemSummary | Review
+union Pageable = ItemSummary | Review | Category
 
 enum ReviewSort {
   VOTES
   NEWEST
+}
+
+enum ItemSort {
+  AVG_RATING
+  RATING_NUMBER
+  LOW_PRICE
+}
+
+enum CategorySort {
+  NAME
+  ITEM_COUNT
+  RATING_NUMBER
 }
 
 input ReviewPaginationInput {
@@ -40,8 +58,20 @@ input ReviewPaginationInput {
   sort: ReviewSort
 }
 
+input ItemPaginationInput {
+  cursor: String
+  limit: Int
+  sort: ItemSort
+}
+
+input CategoryPaginationInput {
+  cursor: String
+  limit: Int
+  sort: CategorySort
+}
+
 type Review {
-  id: Long
+  id: Long!
   rating: Int
   title: String
   text: String
@@ -55,27 +85,15 @@ type Review {
 }
 
 type ReviewImage {
-  id: Long
+  id: Long!
   smallImageURL: String
   mediumImageURL: String
   largeImageURL: String
   attachmentType: String
 }
 
-input ItemPaginationInput {
-  cursor: String
-  limit: Int
-  sort: ItemSort
-}
-
-enum ItemSort {
-  AVG_RATING
-  RATING_NUMBER
-  LOW_PRICE
-}
-
 type Item {
-  id: Long
+  id: Long!
   mainCategory: String
   title: String
   subtitle: String
@@ -94,7 +112,7 @@ type Item {
 }
 
 type ItemSummary {
-  id: Long
+  id: Long!
   title: String
   subtitle: String
   averageRating: Float
@@ -105,7 +123,7 @@ type ItemSummary {
 }
 
 type ItemImage {
-  id: Long
+  id: Long!
   thumb: String
   large: String
   variant: String
@@ -113,15 +131,22 @@ type ItemImage {
 }
 
 type ItemVideo {
-  id: Long
+  id: Long!
   title: String
   url: String
   creatorHandle: String
 }
 
 type ItemAuthor {
-  id: Long
+  id: Long!
   avatar: String
   name: String
   about: [String]
+}
+
+type Category {
+  id: Long!
+  label: String!
+  itemCount: Long
+  ratingNumber: Long
 }
