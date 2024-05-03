@@ -17,8 +17,8 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import amazonrev.item.ItemAuthor;
 import amazonrev.item.ItemImage;
-import amazonrev.item.MainCategory;
 import amazonrev.item.ItemVideo;
+import amazonrev.parser.types.MainCategory;
 import amazonrev.parser.types.RawItem;
 import amazonrev.util.Log;
 
