@@ -51,19 +51,18 @@ public class ItemRowMapper implements RowMapper<Item> {
     String[] description = (String[]) descriptionArray.getArray();
     String[] categories = (String[]) categoriesArray.getArray();
     return new Item(
-      rs.getLong("id"),
-      rs.getString("mainCategory"),
-      rs.getString("title"),
-      rs.getString("subtitle"),
-      rs.getDouble("averageRating"),
-      rs.getLong("ratingNumber"),
-      features,
-      description,
-      rs.getDouble("price"),
-      rs.getString("store"),
-      categories,
-      details,
-      rs.getString("parentAsin")
-    );
+        rs.getLong("id"),
+        rs.getString("mainCategory"),
+        rs.getString("title"),
+        rs.getString("subtitle"),
+        rs.getDouble("averageRating"),
+        rs.getLong("ratingNumber"),
+        features,
+        description,
+        rs.getDouble("price"),
+        rs.getString("store"),
+        categories,
+        details,
+        rs.getString("parentAsin"));
   }
 }

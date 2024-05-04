@@ -1,7 +1,7 @@
 package amazonrev.reviewer;
 
 public record Reviewer(
-  User user,
-  Long numReviews,
-  Long votes
-) {}
+    User user,
+    Long numReviews,
+    Long votes) {
+}

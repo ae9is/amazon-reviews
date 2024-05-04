@@ -17,7 +17,8 @@ public class ReviewController {
   ReviewRepository repo;
 
   @QueryMapping
-  public PagedResults<Review> reviewsByAsin(@Argument("asin") String asin, @Argument("params") ReviewPagination params) {
+  public PagedResults<Review> reviewsByAsin(@Argument("asin") String asin,
+      @Argument("params") ReviewPagination params) {
     return repo.getByParentAsin(asin, params);
   }
 
@@ -26,7 +27,7 @@ public class ReviewController {
     return repo.getById(id);
   }
 
-  @SchemaMapping(typeName="Review", field="images")
+  @SchemaMapping(typeName = "Review", field = "images")
   public List<ReviewImage> images(Review review) {
     return repo.getImagesByReviewId(review.getId());
   }

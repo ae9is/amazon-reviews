@@ -26,7 +26,7 @@ import amazonrev.util.Log;
  * Parse Amazon Reviews 2023 review data.
  */
 public class ReviewParser extends FileParser {
-  
+
   static void parse(String dataFilename, String outputFolder) throws IOException {
     JsonMapper mapper = new JsonMapper();
     mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
@@ -39,12 +39,12 @@ public class ReviewParser extends FileParser {
     BufferedWriter reviewHasImageWriter = new BufferedWriter(new FileWriter(new File(outputFolder + "/review_has_reviewimage.csv")));
     BufferedWriter usersWriter = new BufferedWriter(new FileWriter(new File(outputFolder + "/users.csv")));
     BufferedWriter userHasReviewWriter = new BufferedWriter(new FileWriter(new File(outputFolder + "/user_has_review.csv")));
-    BufferedWriter[] allWriters = new BufferedWriter[]{
-      reviewWriter, 
-      reviewImageWriter, 
-      reviewHasImageWriter,
-      usersWriter,
-      userHasReviewWriter,
+    BufferedWriter[] allWriters = new BufferedWriter[] {
+        reviewWriter,
+        reviewImageWriter,
+        reviewHasImageWriter,
+        usersWriter,
+        userHasReviewWriter,
     };
     FileHeaders fh = new FileHeaders(separator);
     reviewWriter.write(fh.getReview());
@@ -76,28 +76,28 @@ public class ReviewParser extends FileParser {
           try {
             reviewCount++;
             writeLine(reviewWriter, new String[] {
-              asString(reviewCount),
-              asString(review.getRating()),
-              review.getTitle(),
-              review.getText(),
-              review.getAsin(),
-              review.getParentAsin(),
-              asString(review.getTimestamp().toInstant().toEpochMilli()),
-              asString(review.getHelpfulVote()),
-              asString(review.getVerifiedPurchase()),
+                asString(reviewCount),
+                asString(review.getRating()),
+                review.getTitle(),
+                review.getText(),
+                review.getAsin(),
+                review.getParentAsin(),
+                asString(review.getTimestamp().toInstant().toEpochMilli()),
+                asString(review.getHelpfulVote()),
+                asString(review.getVerifiedPurchase()),
             });
-            for (ReviewImage image: review.getImages()) {
+            for (ReviewImage image : review.getImages()) {
               imageCount++;
               writeLine(reviewImageWriter, new String[] {
-                asString(imageCount),
-                image.smallImageURL(),
-                image.mediumImageURL(),
-                image.largeImageURL(),
-                image.attachmentType(),
+                  asString(imageCount),
+                  image.smallImageURL(),
+                  image.mediumImageURL(),
+                  image.largeImageURL(),
+                  image.attachmentType(),
               });
               writeLine(reviewHasImageWriter, new String[] {
-                asString(reviewCount),
-                asString(imageCount),
+                  asString(reviewCount),
+                  asString(imageCount),
               });
             }
             String amznUserID = review.getUserID();
@@ -105,14 +105,14 @@ public class ReviewParser extends FileParser {
               addKeyToIndexMap(userIndexMap, amznUserID);
               int uid = userIndexMap.get(amznUserID);
               writeLine(userHasReviewWriter, new String[] {
-                asString(uid),
-                asString(reviewCount),
+                  asString(uid),
+                  asString(reviewCount),
               });
             }
           } catch (Exception e) {
             // Just abort.
-            // No system implemented to rollback failed writes to our csv files, and it's important 
-            //   not to have undefined state in the files since they're loaded into our database.
+            // No system implemented to rollback failed writes to our csv files, and it's important
+            // not to have undefined state in the files since they're loaded into our database.
             Log.error("Failed to write item " + review.toString());
             Log.error(e.toString());
             System.exit(1);
@@ -120,11 +120,11 @@ public class ReviewParser extends FileParser {
         }
       }
     }
-    for (String amznUserID: new TreeSet<String>(userIndexMap.keySet())) {
+    for (String amznUserID : new TreeSet<String>(userIndexMap.keySet())) {
       int uid = userIndexMap.get(amznUserID);
       writeLine(usersWriter, new String[] {
-        asString(uid),
-        amznUserID,
+          asString(uid),
+          amznUserID,
       });
     }
     for (BufferedWriter writer : allWriters) {

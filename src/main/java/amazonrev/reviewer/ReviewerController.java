@@ -14,7 +14,8 @@ public class ReviewerController {
   ReviewerRepository repo;
 
   @QueryMapping
-  public PagedResults<Reviewer> topReviewers(@Argument("year") Integer year, @Argument("params") ReviewerPagination params) {
+  public PagedResults<Reviewer> topReviewers(@Argument("year") Integer year,
+      @Argument("params") ReviewerPagination params) {
     return repo.getTopReviewers(year, params);
   }
 }

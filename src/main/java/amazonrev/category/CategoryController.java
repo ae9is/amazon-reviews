@@ -14,7 +14,8 @@ public class CategoryController {
   CategoryRepository repo;
 
   @QueryMapping
-  public PagedResults<Category> categories(@Argument("main") Boolean main, @Argument("params") CategoryPagination params) {
+  public PagedResults<Category> categories(@Argument("main") Boolean main,
+      @Argument("params") CategoryPagination params) {
     return repo.getCategories(main, params);
   }
 }

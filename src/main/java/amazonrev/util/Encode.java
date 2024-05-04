@@ -10,7 +10,7 @@ public class Encode {
    */
   public static String[] decodeCursorArray(String encoded) {
     if (encoded == null || encoded.equals("")) {
-      return new String [] {};
+      return new String[] {};
     }
     String decoded = new String(Base64.getUrlDecoder().decode(encoded));
     String[] cursors = decoded.split(delim);
@@ -22,7 +22,7 @@ public class Encode {
    */
   public static String encodeCursorArray(String... cursors) {
     StringBuilder sb = new StringBuilder();
-    for (String cursor: cursors) {
+    for (String cursor : cursors) {
       if (cursor != null) {
         sb = sb.append(cursor);
       }

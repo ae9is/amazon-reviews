@@ -40,16 +40,16 @@ public class ItemParser extends FileParser {
     BufferedWriter itemHasAuthorWriter = new BufferedWriter(new FileWriter(new File(outputFolder + "/item_has_itemauthor.csv")));
     BufferedWriter categoryWriter = new BufferedWriter(new FileWriter(new File(outputFolder + "/category.csv")));
     BufferedWriter categoryHasItemWriter = new BufferedWriter(new FileWriter(new File(outputFolder + "/category_has_item.csv")));
-    BufferedWriter[] allWriters = new BufferedWriter[]{
-      itemWriter, 
-      itemImageWriter, 
-      itemVideoWriter, 
-      itemAuthorWriter,
-      itemHasImageWriter, 
-      itemHasVideoWriter, 
-      itemHasAuthorWriter,
-      categoryWriter, 
-      categoryHasItemWriter, 
+    BufferedWriter[] allWriters = new BufferedWriter[] {
+        itemWriter,
+        itemImageWriter,
+        itemVideoWriter,
+        itemAuthorWriter,
+        itemHasImageWriter,
+        itemHasVideoWriter,
+        itemHasAuthorWriter,
+        categoryWriter,
+        categoryHasItemWriter,
     };
     FileHeaders fh = new FileHeaders(separator);
     itemWriter.write(fh.getItem());
@@ -68,7 +68,7 @@ public class ItemParser extends FileParser {
     int authorCount = -1;
     int errCount = 0;
     Map<String, Integer> categoryIndexMap = new HashMap<String, Integer>();
-    for (MainCategory category: MainCategory.values()) {
+    for (MainCategory category : MainCategory.values()) {
       addKeyToIndexMap(categoryIndexMap, category.toValue());
     }
     try (MappingIterator<RawItem> it = mapper.readerFor(RawItem.class).readValues(reader)) {
@@ -94,82 +94,82 @@ public class ItemParser extends FileParser {
               addKeyToIndexMap(categoryIndexMap, mainCategory);
               int mainCategoryId = categoryIndexMap.get(item.mainCategory());
               writeLine(categoryHasItemWriter, new String[] {
-                asString(mainCategoryId),
-                asString(itemCount),
-                "true",
+                  asString(mainCategoryId),
+                  asString(itemCount),
+                  "true",
               });
             }
-            for (String category: item.categories()) {
+            for (String category : item.categories()) {
               // Item meta categories field includes main category, avoid writing twice
               if (!category.equals(mainCategory)) {
                 addKeyToIndexMap(categoryIndexMap, category);
                 int categoryId = categoryIndexMap.get(category);
                 writeLine(categoryHasItemWriter, new String[] {
-                  asString(categoryId),
-                  asString(itemCount),
-                  "false",
+                    asString(categoryId),
+                    asString(itemCount),
+                    "false",
                 });
               }
             }
             String priceString = item.price();
             writeLine(itemWriter, new String[] {
-              asString(itemCount),
-              item.title(),
-              item.subtitle(),
-              asString(item.averageRating()),
-              asString(item.ratingNumber()),
-              toPostgresArray(item.features(), mapper),
-              toPostgresArray(item.description(), mapper),
-              asString(getDouble(priceString)),
-              asString(item.store()),
-              toJson(item.details(), mapper),
-              item.parentAsin(),
+                asString(itemCount),
+                item.title(),
+                item.subtitle(),
+                asString(item.averageRating()),
+                asString(item.ratingNumber()),
+                toPostgresArray(item.features(), mapper),
+                toPostgresArray(item.description(), mapper),
+                asString(getDouble(priceString)),
+                asString(item.store()),
+                toJson(item.details(), mapper),
+                item.parentAsin(),
             });
-            for (ItemImage image: item.images()) {
+            for (ItemImage image : item.images()) {
               imageCount++;
               writeLine(itemImageWriter, new String[] {
-                asString(imageCount),
-                image.thumb(),
-                image.large(),
-                image.variant(),
-                image.hiRes(),
+                  asString(imageCount),
+                  image.thumb(),
+                  image.large(),
+                  image.variant(),
+                  image.hiRes(),
               });
               writeLine(itemHasImageWriter, new String[] {
-                asString(itemCount),
-                asString(imageCount),
+                  asString(itemCount),
+                  asString(imageCount),
               });
             }
-            for (ItemVideo video: item.videos()) {
+            for (ItemVideo video : item.videos()) {
               videoCount++;
               writeLine(itemVideoWriter, new String[] {
-                asString(videoCount),
-                video.title(),
-                video.url(),
-                video.creatorHandle(),
+                  asString(videoCount),
+                  video.title(),
+                  video.url(),
+                  video.creatorHandle(),
               });
               writeLine(itemHasVideoWriter, new String[] {
-                asString(itemCount),
-                asString(videoCount),
+                  asString(itemCount),
+                  asString(videoCount),
               });
             }
             ItemAuthor author = item.author();
             if (author != null) {
               authorCount++;
               writeLine(itemAuthorWriter, new String[] {
-                asString(authorCount),
-                author.avatar(),
-                author.name(),
-                toPostgresArray(author.about(), mapper),
+                  asString(authorCount),
+                  author.avatar(),
+                  author.name(),
+                  toPostgresArray(author.about(), mapper),
               });
               writeLine(itemHasAuthorWriter, new String[] {
-                asString(itemCount),
-                asString(authorCount),
+                  asString(itemCount),
+                  asString(authorCount),
               });
             }
           } catch (Exception e) {
             // Just abort.
-            // No system implemented to rollback failed writes to our csv files, and it's important 
-            //   not to have undefined state in the files since they're loaded into our database.
+            // No system implemented to rollback failed writes to our csv files, and it's important
+            //  not to have undefined state in the files since they're loaded into our database.
             Log.error("Failed to write item " + item.toString());
             Log.error(e.toString());
             System.exit(1);
@@ -177,11 +177,11 @@ public class ItemParser extends FileParser {
         }
       }
     }
-    for (String category: new TreeSet<String>(categoryIndexMap.keySet())) {
+    for (String category : new TreeSet<String>(categoryIndexMap.keySet())) {
       int categoryIndex = categoryIndexMap.get(category);
       writeLine(categoryWriter, new String[] {
-        asString(categoryIndex),
-        category,
+          asString(categoryIndex),
+          category,
       });
     }
     for (BufferedWriter writer : allWriters) {

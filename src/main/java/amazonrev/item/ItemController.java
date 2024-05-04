@@ -17,7 +17,8 @@ public class ItemController {
   ItemRepository repo;
 
   @QueryMapping
-  public PagedResults<ItemSummary> itemSummariesByCategory(@Argument("category") String category, @Argument("params") ItemPagination params) {
+  public PagedResults<ItemSummary> itemSummariesByCategory(@Argument("category") String category,
+      @Argument("params") ItemPagination params) {
     return repo.getItemSummariesByCategory(category, params);
   }
 
@@ -31,17 +32,17 @@ public class ItemController {
     return repo.getByParentAsin(asin);
   }
 
-  @SchemaMapping(typeName="Item", field="author")
+  @SchemaMapping(typeName = "Item", field = "author")
   public ItemAuthor author(Item item) {
     return repo.getAuthorByItemId(item.getId());
   }
 
-  @SchemaMapping(typeName="Item", field="images")
+  @SchemaMapping(typeName = "Item", field = "images")
   public List<ItemImage> images(Item item) {
     return repo.getImagesByItemId(item.getId());
   }
 
-  @SchemaMapping(typeName="Item", field="videos")
+  @SchemaMapping(typeName = "Item", field = "videos")
   public List<ItemVideo> videos(Item item) {
     return repo.getVideosByItemId(item.getId());
   }

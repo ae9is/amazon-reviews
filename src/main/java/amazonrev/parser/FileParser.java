@@ -27,7 +27,7 @@ public abstract class FileParser {
 
   static void writeLine(BufferedWriter writer, String[] values) throws IOException {
     List<String> sanitised = new ArrayList<String>();
-    for (String val: values) {
+    for (String val : values) {
       if (val != null) {
         sanitised.add(val.replace(separator, "").replace("\n", "").replace(nullchar, ""));
       } else {
@@ -48,11 +48,11 @@ public abstract class FileParser {
   /**
    * Escape double-quotes in values and wrap in Postgres array syntax.
    * 
-   * @throws JsonProcessingException 
+   * @throws JsonProcessingException
    */
   static String toPostgresArray(String[] values, JsonMapper mapper) throws JsonProcessingException {
     List<String> escaped = new ArrayList<String>();
-    for (String val: values) {
+    for (String val : values) {
       if (val != null) {
         escaped.add(mapper.writeValueAsString(val));
       } else {

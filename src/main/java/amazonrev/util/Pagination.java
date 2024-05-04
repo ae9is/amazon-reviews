@@ -34,10 +34,10 @@ public class Pagination {
    * Retrieve n-th cursor as type from encoded cursor array string.
    * One encoded string is used for all cursors to simplify things for the client.
    * 
-   * @param <T> Supported types: Long, Double, Integer, OffsetDateTime, String
+   * @param <T>  Supported types: Long, Double, Integer, OffsetDateTime, String
    * @param type Arbitrary instance of target type of cursor to return.
-   * @param n Which cursor to return. First cursor is n = 0.
-   * @param dir Cursor direction. Used to set initial cursor value.
+   * @param n    Which cursor to return. First cursor is n = 0.
+   * @param dir  Cursor direction. Used to set initial cursor value.
    * @return Decoded cursor of target type as Object.
    */
   protected <T> Object getNthCursorAs(T type, int n, CursorDirection dir) {

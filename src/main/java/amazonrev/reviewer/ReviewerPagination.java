@@ -30,5 +30,6 @@ public class ReviewerPagination extends Pagination {
     } else if (sort.equals(ReviewerSort.NUM_REVIEWS)) {
       return getNthCursorAs(Long.valueOf(0), 1, CursorDirection.DESC);
     }
-    throw new UnsupportedOperationException("Not implemented for " + sort.toString()); }
+    throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+  }
 }
