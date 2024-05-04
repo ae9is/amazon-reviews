@@ -27,10 +27,11 @@ public class ItemSalesRowMapper implements RowMapper<ItemSales> {
   }
 
   @Override
-  public ItemSales mapRow(@Nullable ResultSet rs, int rowNum) throws SQLException {
-    if (rs == null) {
+  public ItemSales mapRow(@Nullable ResultSet resultSet, int rowNum) throws SQLException {
+    if (resultSet == null) {
       return null;
     }
+    amazonrev.util.ResultSet rs = new amazonrev.util.ResultSet(resultSet);
     Long id = rs.getLong("id");
     String title = rs.getString("title");
     String subtitle = rs.getString("subtitle");

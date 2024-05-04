@@ -31,10 +31,11 @@ public class ItemRowMapper implements RowMapper<Item> {
   }
 
   @Override
-  public Item mapRow(@Nullable ResultSet rs, int rowNum) throws SQLException {
-    if (rs == null) {
+  public Item mapRow(@Nullable ResultSet resultSet, int rowNum) throws SQLException {
+    if (resultSet == null) {
       return null;
     }
+    amazonrev.util.ResultSet rs = new amazonrev.util.ResultSet(resultSet);
     String detailsString = rs.getString("details");
     HashMap<String, Object> details;
     try {
