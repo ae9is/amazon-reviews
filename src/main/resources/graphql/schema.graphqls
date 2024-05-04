@@ -11,6 +11,7 @@ type Query {
   reviewsByAsin(asin: String!, params: ReviewPaginationInput): ReviewResult
   reviewById(id: Long!): Review
   categories(main: Boolean, params: CategoryPaginationInput): CategoryResult
+  topItemSales(params: SalesPaginationInput): ItemSalesResult
 }
 
 type ItemSummaryResult {
@@ -25,6 +26,11 @@ type ReviewResult {
 
 type CategoryResult {
   list: [Category]
+  cursor: String!
+}
+
+type ItemSalesResult {
+  list: [ItemSales]
   cursor: String!
 }
 
@@ -45,6 +51,11 @@ enum CategorySort {
   RATING_NUMBER
 }
 
+enum SalesSort {
+  RATING_NUMBER
+  VERIF_PURCHASE
+}
+
 input ReviewPaginationInput {
   cursor: String
   limit: Int
@@ -61,6 +72,12 @@ input CategoryPaginationInput {
   cursor: String
   limit: Int
   sort: CategorySort
+}
+
+input SalesPaginationInput {
+  cursor: String
+  limit: Int
+  sort: SalesSort
 }
 
 type Review {
@@ -142,4 +159,10 @@ type Category {
   label: String!
   itemCount: Long
   ratingNumber: Long
+}
+
+type ItemSales {
+  item: ItemSummary!
+  numVerifiedReviews: Long
+  sales: Float!
 }
