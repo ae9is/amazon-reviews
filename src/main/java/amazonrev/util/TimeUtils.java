@@ -21,4 +21,11 @@ public class TimeUtils {
   public final static Instant POSTGRES_MAX_INSTANT = LocalDateTime.of(294276, 1, 1, 0, 0).toInstant(ZoneOffset.UTC);
   public final static OffsetDateTime POSTGRES_MIN_TIME = POSTGRES_MIN_INSTANT.atOffset(ZoneOffset.UTC);
   public final static OffsetDateTime POSTGRES_MAX_TIME = POSTGRES_MAX_INSTANT.atOffset(ZoneOffset.UTC);
+
+  public static OffsetDateTime toOffsetDateTime(Integer year) {
+    if (year == null) {
+      return null;
+    }
+    return OffsetDateTime.of(year, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC);
+  }
 }

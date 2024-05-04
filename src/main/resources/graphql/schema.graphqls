@@ -12,6 +12,7 @@ type Query {
   reviewById(id: Long!): Review
   categories(main: Boolean, params: CategoryPaginationInput): CategoryResult
   topItemSales(params: SalesPaginationInput): ItemSalesResult
+  topReviewers(year: Int, params: ReviewerPaginationInput): ReviewerResult
 }
 
 type ItemSummaryResult {
@@ -31,6 +32,11 @@ type CategoryResult {
 
 type ItemSalesResult {
   list: [ItemSales]
+  cursor: String!
+}
+
+type ReviewerResult {
+  list: [Reviewer]
   cursor: String!
 }
 
@@ -56,6 +62,11 @@ enum SalesSort {
   VERIF_PURCHASE
 }
 
+enum ReviewerSort {
+  NUM_REVIEWS
+  VOTES
+}
+
 input ReviewPaginationInput {
   cursor: String
   limit: Int
@@ -78,6 +89,12 @@ input SalesPaginationInput {
   cursor: String
   limit: Int
   sort: SalesSort
+}
+
+input ReviewerPaginationInput {
+  cursor: String
+  limit: Int
+  sort: ReviewerSort
 }
 
 type Review {
@@ -165,4 +182,15 @@ type ItemSales {
   item: ItemSummary!
   numVerifiedReviews: Long
   sales: Float!
+}
+
+type User {
+  id: Long!
+  amazonUID: String
+}
+
+type Reviewer {
+  user: User!
+  numReviews: Long
+  votes: Long
 }
