@@ -75,14 +75,14 @@ public class SalesRepository {
         price IS NOT NULL
     )
     SELECT
-      item_id as id,
+      item_id AS id,
       title,
       subtitle,
-      average_rating as averageRating,
-      rating_number as ratingNumber,
+      average_rating AS averageRating,
+      rating_number AS ratingNumber,
       price,
       store,
-      parent_asin as parentAsin,
+      parent_asin AS parentAsin,
       NULL AS numVerifiedReviews,
       sales
     FROM
@@ -105,7 +105,7 @@ public class SalesRepository {
         item.store,
         item.parent_asin,
         count(review.review_id) AS num_reviews,
-        item.price * count(review.review_id) as sales
+        item.price * count(review.review_id) AS sales
       FROM
         item
       LEFT JOIN
@@ -122,12 +122,12 @@ public class SalesRepository {
       item_id AS id,
       title,
       subtitle,
-      average_rating as averageRating,
+      average_rating AS averageRating,
       rating_number AS ratingNumber,
       price,
       store,
       parent_asin AS parentAsin,
-      num_reviews as numVerifiedReviews,
+      num_reviews AS numVerifiedReviews,
       sales
     FROM
       item_sales
