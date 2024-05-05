@@ -3,6 +3,7 @@ package amazonrev.review;
 import java.time.OffsetDateTime;
 
 import amazonrev.util.Pagination;
+import amazonrev.util.exception.BadRequestException;
 
 public class ReviewPagination extends Pagination {
   ReviewSort sort = ReviewSort.NEWEST;
@@ -34,6 +35,6 @@ public class ReviewPagination extends Pagination {
       OffsetDateTime arbitrary = OffsetDateTime.MIN;
       return getNthCursorAs(arbitrary, 1, CursorDirection.DESC);
     }
-    throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+    throw new BadRequestException("Not implemented for " + sort.toString());
   }
 }

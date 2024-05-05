@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import amazonrev.util.Encode;
 import amazonrev.util.PagedResults;
+import amazonrev.util.exception.BadRequestException;
 
 @Repository
 public class SalesRepository {
@@ -33,7 +34,7 @@ public class SalesRepository {
     } else if (sort.equals(SalesSort.VERIF_PURCHASE)) {
       query = verifiedPurchaseQuery;
     } else {
-      throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+      throw new BadRequestException("Not implemented for " + sort.toString());
     }
     List<ItemSales> res = client.sql(query)
         .param("sort_cursor", sortCursor)

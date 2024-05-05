@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import amazonrev.util.Encode;
 import amazonrev.util.Pagination;
+import amazonrev.util.exception.BadRequestException;
 import amazonrev.util.PagedResults;
 
 @Repository
@@ -56,7 +57,7 @@ public class ItemRepository {
       conditionString += " AND (item.rating_number, item.item_id) <";
       sortString = " item.rating_number DESC, item.item_id DESC";
     } else {
-      throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+      throw new BadRequestException("Not implemented for " + sort.toString());
     }
     conditionString += " (:sort_cursor, :id_cursor) ORDER BY" + sortString + " LIMIT :limit";
     query += conditionString;
@@ -88,7 +89,7 @@ public class ItemRepository {
           newSortCursor = String.valueOf(last.ratingNumber());
         }
       } else {
-        throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+        throw new BadRequestException("Not implemented for " + sort.toString());
       }
     }
     String encodedCursor = Encode.encodeCursorArray(newIdCursor, newSortCursor);
@@ -113,7 +114,7 @@ public class ItemRepository {
       key = parentAsin;
       conditionString = " item.parent_asin = :key ";
     } else {
-      throw new UnsupportedOperationException("Either id or parentAsin must be defined");
+      throw new BadRequestException("Either id or parentAsin must be defined");
     }
     String query = """
         WITH item_categories AS (

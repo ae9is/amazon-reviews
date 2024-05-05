@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import amazonrev.util.Encode;
 import amazonrev.util.PagedResults;
+import amazonrev.util.exception.BadRequestException;
 
 @Repository
 public class CategoryRepository {
@@ -31,7 +32,7 @@ public class CategoryRepository {
     } else if (sort.equals(CategorySort.RATING_NUMBER)) {
       query = getNumRatingsQuery(main);
     } else {
-      throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+      throw new BadRequestException("Not implemented for " + sort.toString());
     }
     List<Category> res = client.sql(query)
         .param("sort_cursor", sortCursor)
@@ -61,7 +62,7 @@ public class CategoryRepository {
           newSortCursor = String.valueOf(last.ratingNumber());
         }
       } else {
-        throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+        throw new BadRequestException("Not implemented for " + sort.toString());
       }
     }
     String encodedCursor = Encode.encodeCursorArray(newIdCursor, newSortCursor);

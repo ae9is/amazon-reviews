@@ -2,6 +2,8 @@ package amazonrev.util;
 
 import java.time.OffsetDateTime;
 
+import amazonrev.util.exception.BadRequestException;
+
 /**
  * Logic for cursor-based pagination.
  */
@@ -59,7 +61,7 @@ public class Pagination {
       minValue = "";
       maxValue = "";
     } else {
-      throw new UnsupportedOperationException("Not implemented for " + type.getClass().getName());
+      throw new BadRequestException("Not implemented for " + type.getClass().getName());
     }
     Object defaultValue = dir.equals(CursorDirection.ASC) ? minValue : maxValue;
     Object typedCursor = defaultValue;

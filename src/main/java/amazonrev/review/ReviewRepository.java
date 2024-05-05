@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import amazonrev.util.Encode;
 import amazonrev.util.Pagination;
+import amazonrev.util.exception.BadRequestException;
 import amazonrev.util.PagedResults;
 
 @Repository
@@ -55,7 +56,7 @@ public class ReviewRepository {
       conditionString += " AND (review.time_stamp, review.review_id) <";
       sortString = " review.time_stamp DESC, review.review_id DESC";
     } else {
-      throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+      throw new BadRequestException("Not implemented for " + sort.toString());
     }
     conditionString += " (:sort_cursor, :id_cursor) ORDER BY" + sortString + " LIMIT :limit";
     query += conditionString;
@@ -83,7 +84,7 @@ public class ReviewRepository {
           newSortCursor = String.valueOf(last.getHelpfulVote());
         }
       } else {
-        throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+        throw new BadRequestException("Not implemented for " + sort.toString());
       }
     }
     String encodedCursor = Encode.encodeCursorArray(newIdCursor, newSortCursor);

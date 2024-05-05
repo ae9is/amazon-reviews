@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import amazonrev.util.Encode;
 import amazonrev.util.PagedResults;
 import amazonrev.util.TimeUtils;
+import amazonrev.util.exception.BadRequestException;
 
 @Repository
 public class ReviewerRepository {
@@ -31,7 +32,7 @@ public class ReviewerRepository {
     } else if (sort.equals(ReviewerSort.VOTES)) {
       query = getNumVotesQuery(allTime);
     } else {
-      throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+      throw new BadRequestException("Not implemented for " + sort.toString());
     }
     OffsetDateTime yearODT = TimeUtils.toOffsetDateTime(year);
     List<Reviewer> res = client.sql(query)
@@ -58,7 +59,7 @@ public class ReviewerRepository {
           newSortCursor = String.valueOf(last.votes());
         }
       } else {
-        throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+        throw new BadRequestException("Not implemented for " + sort.toString());
       }
     }
     String encodedCursor = Encode.encodeCursorArray(newIdCursor, newSortCursor);

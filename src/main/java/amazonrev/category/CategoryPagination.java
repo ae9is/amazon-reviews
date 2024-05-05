@@ -1,6 +1,7 @@
 package amazonrev.category;
 
 import amazonrev.util.Pagination;
+import amazonrev.util.exception.BadRequestException;
 
 public class CategoryPagination extends Pagination {
   CategorySort sort = CategorySort.NAME;
@@ -32,6 +33,6 @@ public class CategoryPagination extends Pagination {
     } else if (sort.equals(CategorySort.ITEM_COUNT)) {
       return getNthCursorAs(Long.valueOf(0), 1, CursorDirection.DESC);
     }
-    throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+    throw new BadRequestException("Not implemented for " + sort.toString());
   }
 }

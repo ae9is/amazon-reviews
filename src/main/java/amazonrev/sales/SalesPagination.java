@@ -1,6 +1,7 @@
 package amazonrev.sales;
 
 import amazonrev.util.Pagination;
+import amazonrev.util.exception.BadRequestException;
 
 public class SalesPagination extends Pagination {
   SalesSort sort = SalesSort.RATING_NUMBER;
@@ -30,6 +31,6 @@ public class SalesPagination extends Pagination {
     } else if (sort.equals(SalesSort.VERIF_PURCHASE)) {
       return getNthCursorAs(Double.valueOf(0), 1, CursorDirection.DESC);
     }
-    throw new UnsupportedOperationException("Not implemented for " + sort.toString());
+    throw new BadRequestException("Not implemented for " + sort.toString());
   }
 }
