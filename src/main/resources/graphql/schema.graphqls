@@ -13,6 +13,7 @@ type Query {
   categories(main: Boolean, params: CategoryPaginationInput): CategoryResult
   topItemSales(params: SalesPaginationInput): ItemSalesResult
   topReviewers(year: Int, params: ReviewerPaginationInput): ReviewerResult
+  numReviewsPerReviewerDistribution(numTiles: Int): [Bucket]
 }
 
 type ItemSummaryResult {
@@ -193,4 +194,9 @@ type Reviewer {
   user: User!
   numReviews: Long
   votes: Long
+}
+
+type Bucket {
+  tile: Int!
+  maxval: Long
 }

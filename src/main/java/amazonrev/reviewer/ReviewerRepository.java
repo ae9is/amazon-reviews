@@ -150,4 +150,53 @@ public class ReviewerRepository {
     """;
     return query;
   }
+
+  /**
+   * Bin number of reviews per reviewer into numTiles buckets and return the buckets.
+   * Note: every reviewer has one or more reviews.
+   * @throws Exception 
+   */
+  public List<Bucket> getNumReviewsPerReviewerDistribution(Integer numTiles) throws Exception {
+    final int MAX_NUM_TILES = 100;
+    final int MIN_NUM_TILES = 1;
+    if (numTiles > MAX_NUM_TILES || numTiles < MIN_NUM_TILES) {
+      throw new BadRequestException(
+          "numTiles must be between " + MIN_NUM_TILES + " and " + MAX_NUM_TILES + " inclusive");
+    }
+    final String query = """
+      WITH numrev AS (
+        SELECT
+          user_id,
+          count(*) as reviewcount
+        FROM
+          user_has_review
+        GROUP BY
+          user_id
+        ORDER BY
+          reviewcount desc
+      ),
+      subset AS (
+        SELECT
+          user_id,
+          reviewcount,
+          ntile(:numTiles) OVER (ORDER BY reviewcount) AS tile
+        FROM numrev
+      )
+      SELECT
+        tile,
+        max(reviewcount) as maxval
+      FROM
+        subset
+      GROUP BY
+        tile
+      ORDER BY tile ASC
+      LIMIT :limit;
+    """;
+    List<Bucket> res = client.sql(query)
+        .param("numTiles", numTiles)
+        .param("limit", MAX_NUM_TILES)
+        .query(Bucket.class)
+        .list();
+    return res;
+  }
 }
