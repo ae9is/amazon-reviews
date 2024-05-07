@@ -1,0 +1,69 @@
+{
+  "data": {
+    "categories": {
+      "cursor": "MzI5H0dQUyAmIE5hdmlnYXRpb24=",
+      "list": [
+        {
+          "id": 387,
+          "label": "Books",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 489,
+          "label": "Buy a Kindle",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 6,
+          "label": "Camera & Photo",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 7,
+          "label": "Car Electronics",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 8,
+          "label": "Cell Phones & Accessories",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 605,
+          "label": "Collectible Coins",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 9,
+          "label": "Computers",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 527,
+          "label": "Digital Music",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 588,
+          "label": "Entertainment",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 329,
+          "label": "GPS & Navigation",
+          "itemCount": null,
+          "ratingNumber": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "data": {
+    "categories": {
+      "cursor": "MTUfMTA0NzE=",
+      "list": [
+        {
+          "id": 8,
+          "label": "Cell Phones & Accessories",
+          "itemCount": null,
+          "ratingNumber": 87891
+        },
+        {
+          "id": 16,
+          "label": "Sports & Outdoors",
+          "itemCount": null,
+          "ratingNumber": 49379
+        },
+        {
+          "id": 387,
+          "label": "Books",
+          "itemCount": null,
+          "ratingNumber": 46789
+        },
+        {
+          "id": 14,
+          "label": "Office Products",
+          "itemCount": null,
+          "ratingNumber": 39340
+        },
+        {
+          "id": 561,
+          "label": "Movies & TV",
+          "itemCount": null,
+          "ratingNumber": 30485
+        },
+        {
+          "id": 10,
+          "label": "Health & Personal Care",
+          "itemCount": null,
+          "ratingNumber": 27105
+        },
+        {
+          "id": 5,
+          "label": "Automotive",
+          "itemCount": null,
+          "ratingNumber": 23706
+        },
+        {
+          "id": 0,
+          "label": "All Beauty",
+          "itemCount": null,
+          "ratingNumber": 16184
+        },
+        {
+          "id": 4,
+          "label": "Arts, Crafts & Sewing",
+          "itemCount": null,
+          "ratingNumber": 11418
+        },
+        {
+          "id": 15,
+          "label": "Software",
+          "itemCount": null,
+          "ratingNumber": 10471
+        }
+      ]
+    }
+  }
+}

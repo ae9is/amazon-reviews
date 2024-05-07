@@ -1,0 +1,22 @@
+
+query categories($main: Boolean!, $params: CategoryPaginationInput) {
+  categories(main: $main, params: $params) {
+    cursor
+  	list {
+      id
+    	label
+    	itemCount
+    	ratingNumber
+    }
+  }
+}
+
+#variables:
+#{
+#  "main": true,
+#  "params": {
+#  	"limit": 10,
+#    "cursor": null,
+#    "sort": "NAME"
+#  }
+#}

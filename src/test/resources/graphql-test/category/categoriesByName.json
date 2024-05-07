@@ -1,0 +1,69 @@
+{
+  "data": {
+    "categories": {
+      "cursor": "MTEwH0Fjb3VzdGljIFZpb2xpbnM=",
+      "list": [
+        {
+          "id": 129,
+          "label": "Acoustic-Electric Guitars",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 286,
+          "label": "Acoustic Guitar Amplifiers & Preamps",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 264,
+          "label": "Acoustic Guitar Effects",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 128,
+          "label": "Acoustic Guitars",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 447,
+          "label": "Acoustic Guitars: Beginners",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 593,
+          "label": "Acoustic Guitars: Gifts",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 221,
+          "label": "Acoustic Guitar Strings",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 396,
+          "label": "Acoustic Upright Basses",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 399,
+          "label": "Acoustic Violas",
+          "itemCount": null,
+          "ratingNumber": null
+        },
+        {
+          "id": 110,
+          "label": "Acoustic Violins",
+          "itemCount": null,
+          "ratingNumber": null
+        }
+      ]
+    }
+  }
+}
