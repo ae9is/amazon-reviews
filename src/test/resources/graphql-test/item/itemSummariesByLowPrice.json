@@ -1,0 +1,36 @@
+{
+  "data": {
+    "itemSummariesByCategory": {
+      "cursor": "OTM2OB8wLjg=",
+      "list": [
+        {
+          "id": 157796,
+          "title": "Sony Sound Forge Audio Studio 10- 30 Day Free Trial [Download]",
+          "averageRating": 3.4,
+          "ratingNumber": 171,
+          "price": 0.01,
+          "store": "Sony",
+          "parentAsin": "B00MEOHGPW"
+        },
+        {
+          "id": 90173,
+          "title": "6pcs/Set Universal Acoustic Guitar String Brass Hexagonal Steel Core Strings for Musical Instruments Guitars Strings Guitar Part",
+          "averageRating": 3.1,
+          "ratingNumber": 10,
+          "price": 0.05,
+          "store": "Angel",
+          "parentAsin": "B083YXVSX3"
+        },
+        {
+          "id": 9368,
+          "title": "Lauren Flute Cleaning Rod",
+          "averageRating": 2.6,
+          "ratingNumber": 3,
+          "price": 0.8,
+          "store": "Lauren",
+          "parentAsin": "B002N669YA"
+        }
+      ]
+    }
+  }
+}

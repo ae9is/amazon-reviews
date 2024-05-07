@@ -1,0 +1,25 @@
+
+query itemSummariesByCategory($category: String!, $params: ItemPaginationInput) {
+  itemSummariesByCategory(category: $category, params: $params) {
+    cursor
+    list {
+      id
+      title
+      averageRating
+      ratingNumber
+      price
+      store
+      parentAsin
+    }
+  }
+}
+
+#variables:
+#{
+#  "category": "Musical Instruments",
+#  "params": {
+#    "limit": 3,
+#    "cursor": "OTE1OTMfNjg3MDg=",
+#    "sort": "RATING_NUMBER"
+#  }
+#}

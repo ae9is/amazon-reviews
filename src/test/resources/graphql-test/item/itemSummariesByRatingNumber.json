@@ -1,0 +1,36 @@
+{
+  "data": {
+    "itemSummariesByCategory": {
+      "cursor": "MTUwOTkfNDMyNzE=",
+      "list": [
+        {
+          "id": 3252,
+          "title": "D'Addario Guitar Strings - Phosphor Bronze Acoustic Guitar Strings - EJ41 - Rich, Full Tonal Spectrum - For 12 String Guitars - 09-45 Extra Light 12-String",
+          "averageRating": 4.7,
+          "ratingNumber": 60133,
+          "price": 10.99,
+          "store": "D'Addario",
+          "parentAsin": "B0BTC9YJ2W"
+        },
+        {
+          "id": 93144,
+          "title": "Amazon Basics Adjustable Guitar Folding A-Frame Stand for Acoustic and Electric Guitars with Non-Slip Rubber and Soft Foam Arms, Fully Assembled",
+          "averageRating": 4.8,
+          "ratingNumber": 55452,
+          "price": 17.75,
+          "store": "Amazon Basics",
+          "parentAsin": "B018FCZKR2"
+        },
+        {
+          "id": 15099,
+          "title": "Focusrite Scarlett 4i4 3rd Gen USB Audio Interface, for Musicians, Songwriters, Guitarists, Content Creators — High-Fidelity, Studio Quality Recording, and All the Software You Need to Record",
+          "averageRating": 4.7,
+          "ratingNumber": 43271,
+          "price": 229.99,
+          "store": "Focusrite",
+          "parentAsin": "B09RN7GR8F"
+        }
+      ]
+    }
+  }
+}

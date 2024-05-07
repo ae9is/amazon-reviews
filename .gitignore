@@ -65,7 +65,7 @@ out/
 *.txt
 .env
 data/
-*.json
-*.jsonl
-*.csv
-*.tsv
+data/*.json
+data/*.jsonl
+data/*.csv
+data/*.tsv

@@ -1,0 +1,42 @@
+
+query itemById($id: Long!) {
+  itemById(id: $id) {
+    id
+    mainCategory
+    title
+    subtitle
+    averageRating
+    ratingNumber
+    features
+    description
+    price
+    images {
+      id
+      thumb
+      large
+      variant
+      hiRes
+    }
+    videos {
+      id
+      title
+      url
+      creatorHandle
+    }
+    store
+    categories
+    details
+    parentAsin
+    author {
+      id
+      avatar
+      name
+      about
+    }
+  }
+}
+
+#variables:
+#{
+#  "id": 0
+#}
