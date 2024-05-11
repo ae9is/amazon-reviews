@@ -42,6 +42,14 @@ Open http://localhost:8080/graphiql?path=/graphql
 
 <img src="img/screenshot.png" width=400 />
 
+## Test
+
+With the Postgres database started:
+
+```bash
+make test
+```
+
 ## Database
 
 ### Migrations
