@@ -19,7 +19,7 @@ import amazonrev.util.TestUtils;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureHttpGraphQlTester
 @AutoConfigureWebTestClient
-public class CategoryControllerTests {
+public class CategoryTests {
 
   @LocalServerPort
   int randomServerPort;
