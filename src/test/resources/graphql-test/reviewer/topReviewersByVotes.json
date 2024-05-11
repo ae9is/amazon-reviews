@@ -1,0 +1,49 @@
+{
+  "data": {
+    "topReviewers": {
+      "cursor": "MTYwODIzNR8yMzUz",
+      "list": [
+        {
+          "numReviews": null,
+          "user": {
+            "amazonUID": "AG7MZAJT3WUTBG7K7NLBCZVCIOPA",
+            "id": 507608
+          },
+          "votes": 2875
+        },
+        {
+          "numReviews": null,
+          "user": {
+            "amazonUID": "AG3S4FROO422V5KP7DJCBXVUQLJQ",
+            "id": 292
+          },
+          "votes": 2575
+        },
+        {
+          "numReviews": null,
+          "user": {
+            "amazonUID": "AEFHKAD3YOKFUPXCM5HNHPOWXFQA",
+            "id": 527589
+          },
+          "votes": 2541
+        },
+        {
+          "numReviews": null,
+          "user": {
+            "amazonUID": "AGRET6IXGXJOI47H4ZT7PBXH6J4A",
+            "id": 352466
+          },
+          "votes": 2372
+        },
+        {
+          "numReviews": null,
+          "user": {
+            "amazonUID": "AGDNIADCORCH2KNVMHTLB6ADET3A",
+            "id": 1608235
+          },
+          "votes": 2353
+        }
+      ]
+    }
+  }
+}

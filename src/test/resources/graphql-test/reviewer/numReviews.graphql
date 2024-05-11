@@ -1,0 +1,13 @@
+
+query numReviewsPerReviewerDistribution($numTiles: Int!) {
+  numReviewsPerReviewerDistribution(numTiles: $numTiles) {
+    maxval
+    tile
+  }
+}
+
+#variables:
+#
+#{
+#  "numTiles": 100
+#}

@@ -1,0 +1,23 @@
+
+query topReviewers($params: ReviewerPaginationInput) {
+  topReviewers(params: $params) {
+    cursor
+    list {
+      numReviews
+      user {
+        amazonUID
+        id
+      }
+      votes
+    }
+  }
+}
+
+#{
+#  "params":{
+#    "cursor": null,
+#    "limit": 10,
+#    "sort": "VOTES"
+#  }
+#}
+#
