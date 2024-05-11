@@ -1,6 +1,6 @@
 
-query topReviewers($params: ReviewerPaginationInput) {
-  topReviewers(params: $params) {
+query topReviewers($year: Int, $params: ReviewerPaginationInput) {
+  topReviewers(year: $year, params: $params) {
     cursor
     list {
       numReviews
@@ -14,10 +14,10 @@ query topReviewers($params: ReviewerPaginationInput) {
 }
 
 #{
+#  "year": 2023,
 #  "params":{
 #    "cursor": null,
 #    "limit": 10,
 #    "sort": "VOTES"
 #  }
 #}
-#
