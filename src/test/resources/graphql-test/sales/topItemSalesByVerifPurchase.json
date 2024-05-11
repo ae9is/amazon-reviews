@@ -1,0 +1,51 @@
+{
+  "data": {
+    "topItemSales": {
+      "cursor": "MTUwOTkfMzk5MjYyLjY0",
+      "list": [
+        {
+          "item": {
+            "averageRating": 4.5,
+            "id": 8091,
+            "parentAsin": "B0BZK3X11C",
+            "price": 162.14,
+            "ratingNumber": 39352,
+            "store": "RockJam",
+            "subtitle": null,
+            "title": "RockJam 61 Key Touch Display Keyboard Piano Kit with Digital Piano Bench, Electric Piano Stand, Headphones Piano Note Stickers, Sustain Pedal & Simply Piano Lessons"
+          },
+          "numVerifiedReviews": 2857,
+          "sales": 463233.98
+        },
+        {
+          "item": {
+            "averageRating": 4.8,
+            "id": 51625,
+            "parentAsin": "B072JT59TD",
+            "price": 499.99,
+            "ratingNumber": 5864,
+            "store": "YAMAHA",
+            "subtitle": null,
+            "title": "YAMAHA P71 88-Key Weighted Action Digital Piano with Sustain Pedal and Power Supply (Amazon-Exclusive)"
+          },
+          "numVerifiedReviews": 881,
+          "sales": 440491.19
+        },
+        {
+          "item": {
+            "averageRating": 4.7,
+            "id": 15099,
+            "parentAsin": "B09RN7GR8F",
+            "price": 229.99,
+            "ratingNumber": 43271,
+            "store": "Focusrite",
+            "subtitle": null,
+            "title": "Focusrite Scarlett 4i4 3rd Gen USB Audio Interface, for Musicians, Songwriters, Guitarists, Content Creators — High-Fidelity, Studio Quality Recording, and All the Software You Need to Record"
+          },
+          "numVerifiedReviews": 1736,
+          "sales": 399262.64
+        }
+      ]
+    }
+  }
+}

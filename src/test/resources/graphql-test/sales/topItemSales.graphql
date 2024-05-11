@@ -1,0 +1,29 @@
+
+query topItemSales($params: SalesPaginationInput) {
+  topItemSales(params: $params) {
+    cursor
+    list {
+      item {
+        averageRating
+        id
+        parentAsin
+        price
+        ratingNumber
+        store
+        subtitle
+        title
+      }
+      numVerifiedReviews
+      sales
+    }
+  }
+}
+
+#variables:
+#{
+#  "params": {
+#  	"limit": 10,
+#    "cursor": null,
+#    "sort": "RATING_NUMBER"
+#  }
+#}

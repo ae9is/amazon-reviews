@@ -1,0 +1,51 @@
+{
+  "data": {
+    "topItemSales": {
+      "cursor": "MjQ0MTUfMzg3OTYwMC4w",
+      "list": [
+        {
+          "item": {
+            "averageRating": 4.6,
+            "id": 45232,
+            "parentAsin": "B0BXLY8HJG",
+            "price": 432.85,
+            "ratingNumber": 9620,
+            "store": "Alesis",
+            "subtitle": null,
+            "title": "Alesis Drums Nitro Mesh Kit - Electric Drum Set with USB MIDI Connectivity, Drum Pads, Kick Pedal and Rubber Kick Drum, 40 Kits and 385 Sounds"
+          },
+          "numVerifiedReviews": null,
+          "sales": 4164017.0
+        },
+        {
+          "item": {
+            "averageRating": 4.7,
+            "id": 23349,
+            "parentAsin": "B0C6H9T5T6",
+            "price": 129.99,
+            "ratingNumber": 30314,
+            "store": "Logitech for Creators",
+            "subtitle": null,
+            "title": "Blue Yeti USB Microphone for PC, Mac, Gaming, Recording, Streaming, Podcasting, Studio and Computer Condenser Mic with Blue VO!CE effects, 4 Pickup Patterns, Plug and Play – Blackout"
+          },
+          "numVerifiedReviews": null,
+          "sales": 3940516.86
+        },
+        {
+          "item": {
+            "averageRating": 4.6,
+            "id": 24415,
+            "parentAsin": "B07H5HM6F6",
+            "price": 159,
+            "ratingNumber": 24400,
+            "store": "beyerdynamic",
+            "subtitle": null,
+            "title": "beyerdynamic DT 770 PRO 250 Ohm Over-Ear Studio Headphones in Black. Closed Construction, Wired for Studio use, Ideal for Mixing in The Studio"
+          },
+          "numVerifiedReviews": null,
+          "sales": 3879600.0
+        }
+      ]
+    }
+  }
+}
