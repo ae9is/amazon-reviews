@@ -1,9 +1,13 @@
 package amazonrev.reviewer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureHttpGraphQlTester;
@@ -11,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWeb
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.graphql.test.tester.GraphQlTester.EntityList;
 import org.springframework.graphql.test.tester.HttpGraphQlTester;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
@@ -38,6 +43,44 @@ public class ReviewerTests {
       .execute()
       .path("$")
       .matchesJson(TestUtils.expectedResponseFor(document));
+  }
+
+  @Test
+  void sanityCheckNumReviewsPerReviewerDistribution() throws IOException {
+    String document = "reviewer/numReviews";
+    int size = 10;
+    EntityList<Bucket> res = tester
+      .document(TestUtils.documentFor(document))
+      .variable("numTiles", size)
+      .execute()
+      .errors()
+      .verify()
+      .path("data.numReviewsPerReviewerDistribution")
+      .entityList(Bucket.class);
+    res
+      .hasSize(size);
+    boolean monotonic = true;
+    long prev = Long.MIN_VALUE;
+    int i = 0;
+    for (Bucket bucket : res.get()) {
+      // Check that bucket tiles are ordered and equal to 1, 2, ..., size
+      i++;
+      int tile = bucket.tile();
+      assertEquals(tile, i);
+      try {
+        // Check that max value is monotonically increasing
+        long current = Long.parseLong(bucket.maxval().toString());
+        if (prev > current) {
+          monotonic = false;
+          break;
+        }
+        prev = current;
+      } catch (NumberFormatException nfe) {
+        monotonic = false;
+        Assertions.fail("Could not parse bucket maxval " + bucket.maxval() + " as Long");
+      }
+    }
+    assertTrue(monotonic, "Bucket values should be monotonically increasing");
   }
 
   @Test
