@@ -1,0 +1,35 @@
+
+query reviewsByAsin($asin: String!, $params: ReviewPaginationInput) {
+  reviewsByAsin(asin: $asin, params: $params) {
+    cursor
+    list {
+      asin
+      helpfulVote
+      id
+      images {
+        attachmentType
+        id
+        largeImageURL
+        mediumImageURL
+        smallImageURL
+      }
+      parentAsin
+      rating
+      text
+      timestamp
+      title
+      userID
+      verifiedPurchase
+    }
+  }
+}
+
+#variables:
+#{
+#  "asin": "B0BSGM6CQ9",
+#  "params": {
+#  	"limit": 3,
+#    "cursor": null,
+#    "sort": "NEWEST"
+#  }
+#}

@@ -1,0 +1,48 @@
+{
+  "data": {
+    "reviewsByAsin": {
+      "cursor": "Mjk1MTQ1MR8yMDIzLTA4LTE4VDE4OjE5OjA4LjQ2NFo=",
+      "list": [
+        {
+          "asin": "B001NIC5DI",
+          "helpfulVote": 0,
+          "id": 2941096,
+          "images": [],
+          "parentAsin": "B0BSGM6CQ9",
+          "rating": 5,
+          "text": "Durable smooth, nothing beats Ernie Ball!",
+          "timestamp": "2023-08-20T06:54:20.320Z",
+          "title": "A classic",
+          "userID": "AGREOWM6REL7B6SGXLDZFRU5HL3A",
+          "verifiedPurchase": true
+        },
+        {
+          "asin": "B0002PBS68",
+          "helpfulVote": 0,
+          "id": 2929351,
+          "images": [],
+          "parentAsin": "B0BSGM6CQ9",
+          "rating": 5,
+          "text": "i got a cheap starter guitar a few years ago with some unknown, worn out strings. put these in and it woke the guitar up! sounds so much better and took care of a lot of buzzing i was having with the old strings. thanks Tom Delonge, haha!",
+          "timestamp": "2023-08-19T02:29:52.756Z",
+          "title": "Wow what sound",
+          "userID": "AFKY62SUWUYGVCFZNUCCDEY7Q4SQ",
+          "verifiedPurchase": true
+        },
+        {
+          "asin": "B0002GYXOG",
+          "helpfulVote": 0,
+          "id": 2951451,
+          "images": [],
+          "parentAsin": "B0BSGM6CQ9",
+          "rating": 5,
+          "text": "I had my eyes on some Ernie ball zippy slinky’s for a while now but every guitar store I went to didn’t have them so I looked on Amazon and here they are for only 8 bucks! When I put them on my guitar it felt less restraining from other strings I tried you can bend really high so I give a 5 star review 100% recommend.",
+          "timestamp": "2023-08-18T18:19:08.464Z",
+          "title": "Great strings",
+          "userID": "AHPK7CM6TYQ6ORAG3PP2PW4HQ25Q",
+          "verifiedPurchase": true
+        }
+      ]
+    }
+  }
+}

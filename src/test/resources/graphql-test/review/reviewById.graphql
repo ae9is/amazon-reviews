@@ -1,0 +1,29 @@
+
+query reviewById($id: Long!) {
+  reviewById(id: $id) {
+    asin
+    helpfulVote
+    id
+    parentAsin
+    rating
+    text
+    timestamp
+    title
+    userID
+    verifiedPurchase
+    images {
+      attachmentType
+      id
+      largeImageURL
+      mediumImageURL
+      smallImageURL
+    }
+  }
+}
+
+#
+#variables:
+#{
+#  "id": 58
+#}
+#

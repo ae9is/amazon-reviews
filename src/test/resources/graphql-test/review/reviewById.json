@@ -1,0 +1,39 @@
+{
+  "data": {
+    "reviewById": {
+      "asin": "B08GCR1G1R",
+      "helpfulVote": 20,
+      "id": 58,
+      "parentAsin": "B08GCR1G1R",
+      "rating": 5,
+      "text": "I bought this table for our living room/sitting room and I think it is perfect for a smaller space. It's very sturdy once everything is tightened down and the colors are great. The top is rustic and elegant but I don't believe it's sealed in any type of fashion, so beware of water damage, etc.",
+      "timestamp": "2020-09-24T18:02:10.316Z",
+      "title": "Great little side table, would buy again.",
+      "userID": "AFTYGYAECGAWJRDXIIXSO3PZ45KA",
+      "verifiedPurchase": true,
+      "images": [
+        {
+          "attachmentType": "IMAGE",
+          "id": 7,
+          "largeImageURL": "https://images-na.ssl-images-amazon.com/images/I/71HGIoM0eLL._SL1600_.jpg",
+          "mediumImageURL": "https://images-na.ssl-images-amazon.com/images/I/71HGIoM0eLL._SL800_.jpg",
+          "smallImageURL": "https://images-na.ssl-images-amazon.com/images/I/71HGIoM0eLL._SL256_.jpg"
+        },
+        {
+          "attachmentType": "IMAGE",
+          "id": 8,
+          "largeImageURL": "https://images-na.ssl-images-amazon.com/images/I/71tXQ1It2GL._SL1600_.jpg",
+          "mediumImageURL": "https://images-na.ssl-images-amazon.com/images/I/71tXQ1It2GL._SL800_.jpg",
+          "smallImageURL": "https://images-na.ssl-images-amazon.com/images/I/71tXQ1It2GL._SL256_.jpg"
+        },
+        {
+          "attachmentType": "IMAGE",
+          "id": 9,
+          "largeImageURL": "https://images-na.ssl-images-amazon.com/images/I/71x2M4UItsL._SL1600_.jpg",
+          "mediumImageURL": "https://images-na.ssl-images-amazon.com/images/I/71x2M4UItsL._SL800_.jpg",
+          "smallImageURL": "https://images-na.ssl-images-amazon.com/images/I/71x2M4UItsL._SL256_.jpg"
+        }
+      ]
+    }
+  }
+}
