@@ -47,8 +47,8 @@ public class SalesRepository {
     String newSortCursor = null;
     if (res.size() > 0) {
       last = res.get(res.size() - 1);
-      if (last.item() != null && last.item().id() != null) {
-        newIdCursor = String.valueOf(last.item().id());
+      if (last.item() != null && last.item().getId() != null) {
+        newIdCursor = String.valueOf(last.item().getId());
       }
       if (last.sales() != null) {
         newSortCursor = String.valueOf(last.sales());

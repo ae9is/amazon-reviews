@@ -73,20 +73,20 @@ public class ItemRepository {
     String newSortCursor = null;
     if (res.size() > 0) {
       last = res.get(res.size() - 1);
-      if (last.id() != null) {
-        newIdCursor = String.valueOf(last.id());
+      if (last.getId() != null) {
+        newIdCursor = String.valueOf(last.getId());
       }
       if (sort.equals(ItemSort.AVG_RATING)) {
-        if (last.averageRating() != null) {
-          newSortCursor = String.valueOf(last.averageRating());
+        if (last.getAverageRating() != null) {
+          newSortCursor = String.valueOf(last.getAverageRating());
         }
       } else if (sort.equals(ItemSort.LOW_PRICE)) {
-        if (last.price() != null) {
-          newSortCursor = String.valueOf(last.price());
+        if (last.getPrice() != null) {
+          newSortCursor = String.valueOf(last.getPrice());
         }
       } else if (sort.equals(ItemSort.RATING_NUMBER)) {
-        if (last.ratingNumber() != null) {
-          newSortCursor = String.valueOf(last.ratingNumber());
+        if (last.getRatingNumber() != null) {
+          newSortCursor = String.valueOf(last.getRatingNumber());
         }
       } else {
         throw new BadRequestException("Not implemented for " + sort.toString());
