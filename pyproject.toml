@@ -1,0 +1,63 @@
+[project]
+name = "amazonrev"
+version = "0.0.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "python-dotenv>=1.0.1",
+    #"torch @ https://download.pytorch.org/whl/cpu-cxx11-abi/torch-2.3.0%2Bcpu.cxx11.abi-cp312-cp312-linux_x86_64.whl", # CPU only
+    "torch>=2.3.0",
+    "numpy>=1.26.4",
+    "fastapi>=0.111.0",
+    "transformers>=4.40.2",
+    "pandas>=2.2.2"
+]
+
+# ref: https://github.com/pdm-project/pdm/issues/2189
+[tool.pdm.options]
+lock = ["--no-cross-platform"]
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+install-all = "pdm install -G:all"
+lint = "ruff check src test"
+format = "ruff format ."
+post_install = { shell = """
+  pdm export -o requirements.txt && 
+  pdm export --prod -o requirements.prod.txt
+""" }
+clean = "rm -rf .venv .pdm-build .pdm-python .ruff_cache dist .pytest_cache"
+dev = "uvicorn --port 5000 --reload --app-dir src/main/python/amazonrev app:app"
+test = "python -m pytest" # Depends on running dev server
+parser = { shell = """
+  python -u src/main/python/amazonrev/item_parser.py 2>&1 | tee parser-`date -Iminutes`.log
+""" }
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "ruff>=0.2.1",
+    "pytest>=8.0.0",
+    "uvicorn[standard]>=0.27.0.post1",
+    "requests>=2.31.0",
+]
+
+[tool.ruff]
+exclude = [
+  ".git",
+  ".venv",
+  "__pycache__",
+  "*.bak",
+  "*.pyc",
+]
+line-length = 120
+indent-width = 2
+target-version = "py312"
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".", "src",
+]

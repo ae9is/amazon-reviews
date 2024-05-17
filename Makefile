@@ -21,6 +21,9 @@ deps:
 parse:
 	${GRADLE} runParser
 
+embeddings:
+	pdm parser
+
 docker-build:
 	${GRADLE} bootBuildImage --imageName=${NAME}/api
 
