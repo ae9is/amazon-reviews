@@ -6,6 +6,8 @@ scalar DateTime
 
 type Query {
   itemSummariesByCategory(category: String!, params: ItemPaginationInput): ItemSummaryResult
+  itemSummariesByQuery(queryText: String!, limit: Int): [ItemSummary]
+  itemSummariesByQueryPaginated(queryText: String!, params: PaginationInput): ItemSummaryResult
   itemById(id: Long!): Item
   itemByAsin(asin: String!): Item
   reviewsByAsin(asin: String!, params: ReviewPaginationInput): ReviewResult
@@ -66,6 +68,11 @@ enum SalesSort {
 enum ReviewerSort {
   NUM_REVIEWS
   VOTES
+}
+
+input PaginationInput {
+  cursor: String
+  limit: Int
 }
 
 input ReviewPaginationInput {

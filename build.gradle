@@ -36,12 +36,13 @@ dependencies {
 	implementation 'com.fasterxml.jackson.core:jackson-core:2.17.0'
 	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.17.0'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.0'
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	runtimeOnly 'org.postgresql:postgresql:42.7.3'
 	compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.graphql:spring-graphql-test:1.2.6'
-  testImplementation("org.springframework.boot:spring-boot-starter-webflux")
+  testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
   testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
   testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
