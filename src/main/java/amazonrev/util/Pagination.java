@@ -8,7 +8,6 @@ import amazonrev.util.exception.BadRequestException;
  * Logic for cursor-based pagination.
  */
 public class Pagination {
-  final static long DEFAULT_ID_CURSOR = -1;
   final static int MIN_LIMIT = 1;
   final static int DEFAULT_LIMIT = 10;
   final static int MAX_LIMIT = 50;
@@ -49,7 +48,7 @@ public class Pagination {
       minValue = Long.MIN_VALUE;
       maxValue = Long.MAX_VALUE;
     } else if (type instanceof Double) {
-      minValue = Double.MIN_VALUE;
+      minValue = -Double.MAX_VALUE;
       maxValue = Double.MAX_VALUE;
     } else if (type instanceof Integer) {
       minValue = Integer.MIN_VALUE;
