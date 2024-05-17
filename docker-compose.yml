@@ -1,6 +1,7 @@
 services:
   db:
-    image: postgres:16
+    #image: postgres:16
+    image: pgvector/pgvector:pg16
     container_name: reviews-postgres
     ports:
       - "5432:5432"
