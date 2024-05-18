@@ -19,7 +19,7 @@ public class RecommendRepository {
   JdbcClient jdbcClient;
 
   @Autowired
-  PythonApiClient apiClient;
+  ModelApiClient apiClient;
 
   /**
    * Use natural language to get relevant item summaries.

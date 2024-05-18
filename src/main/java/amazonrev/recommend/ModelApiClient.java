@@ -16,13 +16,13 @@ import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 
 @Component
-public class PythonApiClient {
+public class ModelApiClient {
 
   final int timeout = 5000;
 
   WebClient webClient;
 
-  public PythonApiClient() {
+  public ModelApiClient() {
     // Custom http client underlying web client in order to set shorter timeouts
     HttpClient httpClient = HttpClient.create()
         .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, timeout)
@@ -32,7 +32,7 @@ public class PythonApiClient {
                .addHandlerLast(new WriteTimeoutHandler(timeout, TimeUnit.MILLISECONDS)));
     webClient = WebClient.builder()
         .clientConnector(new ReactorClientHttpConnector(httpClient))
-        .baseUrl(Constants.getPythonEndpoint())
+        .baseUrl(Constants.getModelApiUrl())
         .build();
   }
 
