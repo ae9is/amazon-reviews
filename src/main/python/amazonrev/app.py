@@ -43,7 +43,10 @@ async def embedding_create(embeddable: Embeddable):
   embeddings = generate_embeddings([embeddable.text])
   if embeddings is None or len(embeddings) < 1:
     return r(body='Error generating embedding', status=500)
-  return r(tensor_to_string(embeddings[0]))
+  body = {
+    'data': tensor_to_string(embeddings[0]),
+  }
+  return r(body)
 
 
 if __name__ == '__main__':

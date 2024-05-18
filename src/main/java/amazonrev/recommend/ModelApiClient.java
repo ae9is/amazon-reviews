@@ -1,8 +1,11 @@
 package amazonrev.recommend;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import java.nio.charset.StandardCharsets;
+
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
@@ -36,16 +39,15 @@ public class ModelApiClient {
         .build();
   }
 
-  <T> T post(String path, Object body) throws WebClientException {
-    @SuppressWarnings("unchecked")
-    T resp = (T) webClient.post()
+  HashMap<String, ?> post(String path, Object body) throws WebClientException {
+    HashMap<String, ?> resp = webClient.post()
         .uri(path)
         .contentType(MediaType.APPLICATION_JSON)
         .bodyValue(body)
         .accept(MediaType.APPLICATION_JSON)
         .acceptCharset(StandardCharsets.UTF_8)
         .retrieve()
-        .bodyToMono(Object.class)
+        .bodyToMono(new ParameterizedTypeReference<HashMap<String, ?>>() {})
         .block();
     return resp;
   }

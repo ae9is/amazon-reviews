@@ -2,6 +2,7 @@ package amazonrev.recommend;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -32,7 +33,8 @@ public class RecommendRepository {
   public List<ItemSummary> getItemSummariesByQuery(String queryText, Integer limit) {
     // Convert query text into model embedding via Python api
     Embeddable body = new Embeddable(queryText);
-    String embedding = apiClient.post(Constants.getEmbeddingCreatePath(), body);
+    HashMap<String, ?> resp = apiClient.post(Constants.getEmbeddingCreatePath(), body);
+    String embedding = String.valueOf(resp.get("data"));
     // Run vector similarity search to get relevant results
     // Supported vector distance functions in ORDER BY:
     // <-> L2 distance
@@ -74,7 +76,8 @@ public class RecommendRepository {
    */
   public PagedResults<ItemSummary> getItemSummariesByQuery(String queryText, VectorPagination params) {
     Embeddable body = new Embeddable(queryText);
-    String embedding = apiClient.post(Constants.getEmbeddingCreatePath(), body);
+    HashMap<String, ?> resp = apiClient.post(Constants.getEmbeddingCreatePath(), body);
+    String embedding = String.valueOf(resp.get("data"));
     if (params == null) {
       params = new VectorPagination();
     }
