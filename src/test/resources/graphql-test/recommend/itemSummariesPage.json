@@ -1,0 +1,36 @@
+{
+  "data": {
+    "itemSummariesByQueryPaginated": {
+      "cursor": "MTM2ODE2Hy0wLjg3NDU5MjY2MTg1NzYwNQ==",
+      "list": [
+        {
+          "id": 127498,
+          "title": "Fender Fender Wall Hanger, Sunburst",
+          "averageRating": 4.2,
+          "ratingNumber": 565,
+          "price": null,
+          "store": "Fender",
+          "parentAsin": "B01A1ARHV8"
+        },
+        {
+          "id": 33374,
+          "title": "jtlyhome Fun Boho Rainbow Hanging Wall Decor, 2-Piece Set, Color Options (Gray & Yellow)",
+          "averageRating": 5,
+          "ratingNumber": 7,
+          "price": null,
+          "store": "XGATML",
+          "parentAsin": "B08B4BY8PM"
+        },
+        {
+          "id": 136816,
+          "title": "Giant / Huge Guitar Pick Wall Art - Christian Cross Treble Clef",
+          "averageRating": 5,
+          "ratingNumber": 1,
+          "price": null,
+          "store": "AxetremeCreations",
+          "parentAsin": "B00A92BPO4"
+        }
+      ]
+    }
+  }
+}

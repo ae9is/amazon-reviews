@@ -1,0 +1,24 @@
+
+query itemSummariesByQueryPaginated($queryText: String!, $params: PaginationInput) {
+  itemSummariesByQueryPaginated(queryText: $queryText, params: $params) {
+    cursor
+    list {
+      id
+      title
+      averageRating
+      ratingNumber
+      price
+      store
+      parentAsin
+    }
+  }
+}
+
+#variables:
+#{
+#  "queryText": "Description of something required",
+#  "params": {
+#    "limit": 5,
+#    "cursor": null
+#  }
+#}

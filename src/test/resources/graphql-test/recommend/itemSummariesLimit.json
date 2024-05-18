@@ -1,0 +1,51 @@
+{
+  "data": {
+    "itemSummariesByQuery": [
+      {
+        "id": 58100,
+        "title": "Arturia MicroBrute Mini Analog Synthesizer with Arturia Beatstep MIDI Controller",
+        "averageRating": 5,
+        "ratingNumber": 2,
+        "price": null,
+        "store": "ARTURIA",
+        "parentAsin": "B00GGP9K0Y"
+      },
+      {
+        "id": 127781,
+        "title": "Akai Professional EWI4000S | Electronic Wind Instrument MIDI Controller with Built-In Sound Module, Headphone Jack & MIDI I/O",
+        "averageRating": 4,
+        "ratingNumber": 61,
+        "price": null,
+        "store": "AKAI",
+        "parentAsin": "B003Y5825I"
+      },
+      {
+        "id": 125318,
+        "title": "Akai Professional EWI4000S | Electronic Wind Instrument MIDI Controller with Built-In Sound Module, Headphone Jack & MIDI I/O",
+        "averageRating": 4,
+        "ratingNumber": 61,
+        "price": null,
+        "store": "AKAI",
+        "parentAsin": "B000UTIJ0O"
+      },
+      {
+        "id": 46486,
+        "title": "AKAI Professional EWI USB - Electronic Wind Instrument and MIDI controller, with Plug-and-play Connectivity and Garritan Sound Library",
+        "averageRating": 3.5,
+        "ratingNumber": 535,
+        "price": 423.48,
+        "store": "AKAI",
+        "parentAsin": "B09KD2PNGX"
+      },
+      {
+        "id": 22051,
+        "title": "Garritan Personal Orchestra Virtual Instrument",
+        "averageRating": 3.2,
+        "ratingNumber": 5,
+        "price": null,
+        "store": "Garritan",
+        "parentAsin": "B0002VC9JC"
+      }
+    ]
+  }
+}

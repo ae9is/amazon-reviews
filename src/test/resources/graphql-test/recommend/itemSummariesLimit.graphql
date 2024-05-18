@@ -1,0 +1,18 @@
+
+query itemSummariesByQuery($queryText: String!, $limit: Int) {
+  itemSummariesByQuery(queryText: $queryText, limit: $limit) {
+    id
+    title
+    averageRating
+    ratingNumber
+    price
+    store
+    parentAsin
+  }
+}
+
+#variables:
+#{
+#  "queryText": "Description of something required",
+#  "limit": 20
+#}
