@@ -9,6 +9,7 @@ clean:
 
 test:
 	${GRADLE} test
+	pdm test
 
 build:
 	${GRADLE} build

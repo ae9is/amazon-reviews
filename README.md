@@ -88,7 +88,7 @@ Open http://localhost:8080/graphiql?path=/graphql
 
 ## Test
 
-With the Postgres database started:
+With the Postgres database and APIs started:
 
 ```bash
 make test
