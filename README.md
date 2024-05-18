@@ -4,6 +4,8 @@ Spring GraphQL API based on normalising the [Amazon Reviews 2023 dataset](https:
 
 Also contains a Python API for running the [BLaIR model](https://github.com/hyp1231/AmazonReviews2023/tree/main/blair) for item recommendations.
 
+<img src="img/screenshot-recommendations.png" width=400 />
+
 ## Setup
 
 ### Requirements
@@ -82,7 +84,7 @@ make run
 ```
 Open http://localhost:8080/graphiql?path=/graphql
 
-<img src="img/screenshot.png" width=400 />
+<img src="img/screenshot-reviews.png" width=400 />
 
 ## Test
 
