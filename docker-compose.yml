@@ -18,7 +18,7 @@ services:
 #      POSTGRES_PASSWORD: reviews
 #      POSTGRES_DB: reviews
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - reviews-postgres:/var/lib/postgresql/data
       - ./data/export:/export
     restart: always
     healthcheck:
@@ -28,12 +28,14 @@ services:
       retries: 3
     networks:
       - net
-  api:
+  graphqlapi:
     depends_on:
       db:
         condition: service_healthy
-    image: amazonreviews/api:latest
-    container_name: reviews-api
+      modelapi:
+        condition: service_healthy
+    image: amazonreviews/graphql-api:latest
+    container_name: reviews-graphql-api
     ports:
       - "4000:8080"
     env_file:
@@ -42,11 +44,19 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
 #      SPRING_DATASOURCE_USERNAME: postgres
 #      SPRING_DATASOURCE_PASSWORD: reviews
+      MODEL_API_URL: http://modelapi:5000
+    networks:
+      - net
+  modelapi:
+    image: amazonreviews/model-api:latest
+    container_name: reviews-model-api
+    ports:
+      - "5000:5000"
     networks:
       - net
 
 volumes:
-  postgres:
+  reviews-postgres:
 
 networks:
   net:

@@ -2,6 +2,43 @@
 
 Spring GraphQL API based on normalising the [Amazon Reviews 2023 dataset](https://github.com/hyp1231/AmazonReviews2023) in Postgres.
 
+Also contains a Python API for running the [BLaIR model](https://github.com/hyp1231/AmazonReviews2023/tree/main/blair) for item recommendations.
+
+## Setup
+
+### Requirements
+
+The project has been developed on Linux for Linux-based Docker image deployment. Your mileage may vary with other platforms.
+
+Running the Python API requires CUDA 12.1, or some editing of the requirements in [pyproject.toml](pyproject.toml). The Python API also requires generation of some embeddings which are loaded into the database. This task effectively requires GPU-enabled PyTorch; it's very slow without.
+
+### Environment variables
+
+Setup loading .env variables: https://direnv.net/
+
+```bash
+direnv allow
+```
+
+### Python
+
+Uses Python 3.12. To easily switch between versions of python, consider setting up [pyenv](https://github.com/pyenv/pyenv).
+
+[PDM](https://github.com/pdm-project/pdm) is used for proper dependency resolution and convenience scripts.
+
+```bash
+pip install pipx
+pipx install pdm
+```
+
+### Java
+
+Uses Java 17+ with Gradle. Gradle is included in the project files already.
+
+```
+apt install openjdk-17-jdk
+```
+
 ## Data 
 
 See: https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/tree/main
@@ -18,26 +55,31 @@ The data needs to be downloaded and prepped for import into the database.
     make parse
     ```
 
+3. For the item recommendations API, some item metadata needs to be fed through a model to generate embeddings. This takes a while and is interruptible:
+
+    ```bash
+    make embeddings
+    ```
+
 *Note: Feel free to download, merge, and parse the data for **all** of the categories—but it's a lot bigger!*
 
 ## Run
 
-To run the Spring api and Postgres database via Docker:
+To run the Spring and Python APIs and Postgres database via Docker:
 
 ```bash
 direnv allow
 make docker-build
-docker compose up -d
+docker compose up
 ```
 
 Open http://localhost:4000/graphiql?path=/graphql
 
-You can also directly run the Spring api at the same time with:
+(Optional) You can also directly run the Spring API at the same time with:
 
 ```bash
 make run
 ```
-
 Open http://localhost:8080/graphiql?path=/graphql
 
 <img src="img/screenshot.png" width=400 />
@@ -70,6 +112,6 @@ To get a shell to the running Postgres instance:
 
 ```bash
 make docker-bash-db
-postgres@...$ psql test
-test=# \d
+postgres@...:/$ psql reviews
+reviews=# \d
 ```
