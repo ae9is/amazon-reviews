@@ -235,3 +235,5 @@ data/*.jsonl
 data/*.csv
 data/*.tsv
 .python-version
+src/test/resources/database/export/*.csv
+src/test/resources/database/export/*.sql

@@ -87,33 +87,33 @@ public class ReviewerTests {
   void shouldGetTopReviewersByNumReviews() throws IOException {
     String graphqlDocument = "reviewer/topReviewers";
     String responseDocument = graphqlDocument + "ByNumReviews";
-    doTopReviewersTest(graphqlDocument, responseDocument, "NUM_REVIEWS", "OTk2MTcfMjQw", null);
+    doTopReviewersTest(graphqlDocument, responseDocument, "NUM_REVIEWS", "MTcxMDIyNh8x", null);
   }
 
   @Test
   void shouldGetTopReviewersByNumReviewsFor2023() throws IOException {
     String graphqlDocument = "reviewer/topReviewers";
     String responseDocument = graphqlDocument + "ByNumReviews2023";
-    doTopReviewersTest(graphqlDocument, responseDocument, "NUM_REVIEWS", "MTIxODk2MR80NA==", 2023);
+    doTopReviewersTest(graphqlDocument, responseDocument, "NUM_REVIEWS", "MTcxMDIyNh8x", 2023);
   }
 
   @Test
   void shouldGetTopReviewersByVotes() throws IOException {
     String graphqlDocument = "reviewer/topReviewers";
     String responseDocument = graphqlDocument + "ByVotes";
-    doTopReviewersTest(graphqlDocument, responseDocument, "VOTES", "MTM2MzU4OR8yODky", null);
+    doTopReviewersTest(graphqlDocument, responseDocument, "VOTES", "Nzc5OTQ0HzEyOQ==", null);
   }
 
   @Test
   void shouldGetTopReviewersByVotesFor2000() throws IOException {
     String graphqlDocument = "reviewer/topReviewers";
-    String responseDocument = graphqlDocument + "ByVotes2000";
-    doTopReviewersTest(graphqlDocument, responseDocument, "VOTES", "MTIyNDA4Nx82NQ==", 2000);
+    String responseDocument = graphqlDocument + "ByVotes2017";
+    doTopReviewersTest(graphqlDocument, responseDocument, "VOTES", null, 2017);
   }
 
   void doTopReviewersTest(String graphqlDocument, String responseDocument, String sort, String cursor, Integer year) throws IOException {
     Map<String, Object> params = new HashMap<>();
-    params.put("limit", 5);
+    params.put("limit", 3);
     params.put("cursor", cursor);
     params.put("sort", sort);
     tester

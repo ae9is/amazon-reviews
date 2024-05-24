@@ -2,6 +2,8 @@ import requests as req
 import json
 import torch
 
+from src.test.python.config import MODEL_API_URL
+
 
 def json_equals(a, b) -> bool:
   a_str = json.dumps(a, sort_keys=True)
@@ -22,14 +24,14 @@ def tensor_string_to_tensor(tensor_string: str) -> torch.Tensor:
   return torch.tensor(tensor_list, dtype=torch.float32)
 
 
-def test_embeddings(port=5000):
+def test_embeddings(api_url=MODEL_API_URL):
   # Expected size of the embedding
   # ref: data/models/blair-roberta-base/config.json
   MODEL_HIDDEN_SIZE = 768
   # How close the expected and calculated embedding vectors should be to pass test, inner product
   # ref: https://huggingface.co/hyp1231/blair-roberta-base#use-with-huggingface
   THRESHOLD_DISTANCE = 0.95
-  url = f'http://localhost:{port}/v1/embedding/create'
+  url = f'{api_url}/v1/embedding/create'
   data = {
     "text": "Something to be encoded"
   }

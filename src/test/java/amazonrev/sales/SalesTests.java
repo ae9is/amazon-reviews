@@ -40,7 +40,7 @@ public class SalesTests {
   void shouldGetTopItemSalesByVerifPurchase() throws IOException {
     String graphqlDocument = "sales/topItemSales";
     String responseDocument = graphqlDocument + "ByVerifPurchase";
-    doTopReviewersTest(graphqlDocument, responseDocument, "VERIF_PURCHASE", "MTA2NzI3HzQ3NTAzOC40OA==");
+    doTopReviewersTest(graphqlDocument, responseDocument, "VERIF_PURCHASE", null);
   }
 
   void doTopReviewersTest(String graphqlDocument, String responseDocument, String sort, String cursor) throws IOException {
