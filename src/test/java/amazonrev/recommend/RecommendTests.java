@@ -44,6 +44,7 @@ public class RecommendTests {
       .matchesJson(TestUtils.expectedResponseFor(document));
   }
 
+  @Test
   void shouldGetItemSummariesByQueryPaginated() throws IOException {
     String document = "recommend/itemSummariesPage";
     String queryText = "Something to spice up my wall";
