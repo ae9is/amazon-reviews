@@ -88,7 +88,13 @@ Open http://localhost:8080/graphiql?path=/graphql
 
 ## Test
 
-With the Postgres database and APIs started:
+Build the Python API Docker image first using:
+
+```bash
+make docker-build
+```
+
+Then run using:
 
 ```bash
 make test
