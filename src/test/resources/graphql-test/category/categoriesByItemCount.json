@@ -1,66 +1,24 @@
 {
   "data": {
     "categories": {
-      "cursor": "NTIfNjI3Ng==",
+      "cursor": "MTMyHzc=",
       "list": [
         {
-          "id": 73,
-          "label": "Accessories",
-          "itemCount": 9409,
+          "id": 101,
+          "label": "Computer Recording",
+          "itemCount": 10,
           "ratingNumber": null
         },
         {
-          "id": 47,
-          "label": "Folk & World",
-          "itemCount": 9352,
+          "id": 34,
+          "label": "Guitar & Bass Accessories",
+          "itemCount": 8,
           "ratingNumber": null
         },
         {
-          "id": 83,
-          "label": "Drum & Percussion Accessories",
-          "itemCount": 8702,
-          "ratingNumber": null
-        },
-        {
-          "id": 90,
-          "label": "Stage & Studio Cables",
-          "itemCount": 8617,
-          "ratingNumber": null
-        },
-        {
-          "id": 60,
-          "label": "Amplifiers & Effects",
-          "itemCount": 8548,
-          "ratingNumber": null
-        },
-        {
-          "id": 51,
-          "label": "Electronic Music, DJ & Karaoke",
-          "itemCount": 8224,
-          "ratingNumber": null
-        },
-        {
-          "id": 38,
-          "label": "Electric Guitars",
-          "itemCount": 8150,
-          "ratingNumber": null
-        },
-        {
-          "id": 39,
-          "label": "Solid Body",
-          "itemCount": 6624,
-          "ratingNumber": null
-        },
-        {
-          "id": 44,
-          "label": "Wireless Microphones & Systems",
-          "itemCount": 6446,
-          "ratingNumber": null
-        },
-        {
-          "id": 52,
-          "label": "DJ Equipment",
-          "itemCount": 6276,
+          "id": 132,
+          "label": "Electronic Keyboards",
+          "itemCount": 7,
           "ratingNumber": null
         }
       ]

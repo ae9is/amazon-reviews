@@ -1,66 +1,18 @@
 {
   "data": {
     "categories": {
-      "cursor": "Nx8xMTc=",
+      "cursor": "NB8x",
       "list": [
-        {
-          "id": 8,
-          "label": "Cell Phones & Accessories",
-          "itemCount": 715,
-          "ratingNumber": null
-        },
-        {
-          "id": 15,
-          "label": "Software",
-          "itemCount": 704,
-          "ratingNumber": null
-        },
         {
           "id": 6,
           "label": "Camera & Photo",
-          "itemCount": 527,
-          "ratingNumber": null
-        },
-        {
-          "id": 14,
-          "label": "Office Products",
-          "itemCount": 410,
-          "ratingNumber": null
-        },
-        {
-          "id": 10,
-          "label": "Health & Personal Care",
-          "itemCount": 402,
-          "ratingNumber": null
-        },
-        {
-          "id": 387,
-          "label": "Books",
-          "itemCount": 382,
-          "ratingNumber": null
-        },
-        {
-          "id": 5,
-          "label": "Automotive",
-          "itemCount": 363,
+          "itemCount": 1,
           "ratingNumber": null
         },
         {
           "id": 4,
           "label": "Arts, Crafts & Sewing",
-          "itemCount": 195,
-          "ratingNumber": null
-        },
-        {
-          "id": 0,
-          "label": "All Beauty",
-          "itemCount": 174,
-          "ratingNumber": null
-        },
-        {
-          "id": 7,
-          "label": "Car Electronics",
-          "itemCount": 117,
+          "itemCount": 1,
           "ratingNumber": null
         }
       ]

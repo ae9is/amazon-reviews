@@ -34,47 +34,47 @@ public class CategoryTests {
   void shouldGetMainCategoriesByName() throws IOException {
     String graphqlDocument = "category/categories";
     String responseDocument = graphqlDocument + "ByNameMain";
-    doTest(graphqlDocument, responseDocument, true, "NAME", "NTEwH0JhYnk=");
+    doTest(graphqlDocument, responseDocument, true, "NAME", "Nh9DYW1lcmEgJiBQaG90bw==");
   }
 
   @Test
   void shouldGetMainCategoriesByRatingNumber() throws IOException {
     String graphqlDocument = "category/categories";
     String responseDocument = graphqlDocument + "ByRatingNumberMain";
-    doTest(graphqlDocument, responseDocument, true, "RATING_NUMBER", "Nh8xMDY4NTg=");
+    doTest(graphqlDocument, responseDocument, true, "RATING_NUMBER", "MR8yNDQwNQ==");
   }
 
   @Test
   void shouldGetMainCategoriesByItemCount() throws IOException {
     String graphqlDocument = "category/categories";
     String responseDocument = graphqlDocument + "ByItemCountMain";
-    doTest(graphqlDocument, responseDocument, true, "ITEM_COUNT", "OR83NDY=");
+    doTest(graphqlDocument, responseDocument, true, "ITEM_COUNT", "MR8z");
   }
 
   @Test
   void shouldGetCategoriesByName() throws IOException {
     String graphqlDocument = "category/categories";
     String responseDocument = graphqlDocument + "ByName";
-    doTest(graphqlDocument, responseDocument, false, "NAME", "MTMwH0Fjb3VzdGljICYgQ2xhc3NpY2FsIEd1aXRhciBQYXJ0cw==");
+    doTest(graphqlDocument, responseDocument, false, "NAME", "NB9BcnRzLCBDcmFmdHMgJiBTZXdpbmc=");
   }
 
   @Test
   void shouldGetCategoriesByRatingNumber() throws IOException {
     String graphqlDocument = "category/categories";
     String responseDocument = graphqlDocument + "ByRatingNumber";
-    doTest(graphqlDocument, responseDocument, false, "RATING_NUMBER", "NjkfOTQ1ODQz");
+    doTest(graphqlDocument, responseDocument, false, "RATING_NUMBER", "MzQfMjE2Nzgw");
   }
 
   @Test
   void shouldGetCategoriesByItemCount() throws IOException {
     String graphqlDocument = "category/categories";
     String responseDocument = graphqlDocument + "ByItemCount";
-    doTest(graphqlDocument, responseDocument, false, "ITEM_COUNT", "NzEfMTA2MjY=");
+    doTest(graphqlDocument, responseDocument, false, "ITEM_COUNT", "MzAfMTE=");
   }
 
   void doTest(String graphqlDocument, String responseDocument, boolean main, String sort, String cursor) throws IOException {
     Map<String, Object> params = new HashMap<>();
-    params.put("limit", 10);
+    params.put("limit", 3);
     params.put("cursor", cursor);
     params.put("sort", sort);
     tester

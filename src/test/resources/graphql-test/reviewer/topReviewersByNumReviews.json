@@ -1,45 +1,29 @@
 {
   "data": {
     "topReviewers": {
-      "cursor": "MjM3MTAzHzIwMg==",
+      "cursor": "MTY5Mjc2Nh8x",
       "list": [
         {
-          "numReviews": 224,
+          "numReviews": 1,
           "user": {
-            "amazonUID": "AG5ZVXXHEXDYUUODSEQC4XXV7DPA",
-            "id": 248621
+            "amazonUID": "AGLID4EEKCNJ6CD3QAX3L7Q6VPAA",
+            "id": 1707808
           },
           "votes": null
         },
         {
-          "numReviews": 215,
+          "numReviews": 1,
           "user": {
-            "amazonUID": "AGBG3KK74IKWJNQVMQAGVBWJ7FAQ",
-            "id": 3041
+            "amazonUID": "AGREOWM6REL7B6SGXLDZFRU5HL3A",
+            "id": 1702092
           },
           "votes": null
         },
         {
-          "numReviews": 213,
+          "numReviews": 1,
           "user": {
-            "amazonUID": "AGQ7IEKV2MJP3TX4SP4KOOO7ZPBA",
-            "id": 1058274
-          },
-          "votes": null
-        },
-        {
-          "numReviews": 209,
-          "user": {
-            "amazonUID": "AFHPJTBQYQHQXIFBAODXDAIGCGMQ",
-            "id": 384
-          },
-          "votes": null
-        },
-        {
-          "numReviews": 202,
-          "user": {
-            "amazonUID": "AFH6AUO7HH5PMJBRBQGQQKDV5HLQ",
-            "id": 237103
+            "amazonUID": "AFKY62SUWUYGVCFZNUCCDEY7Q4SQ",
+            "id": 1692766
           },
           "votes": null
         }

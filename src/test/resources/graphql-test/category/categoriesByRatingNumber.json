@@ -1,67 +1,25 @@
 {
   "data": {
     "categories": {
-      "cursor": "MR82NjM3NzQ=",
+      "cursor": "NjkfMTYwNzU4",
       "list": [
         {
-          "id": 44,
-          "label": "Wireless Microphones & Systems",
+          "id": 27,
+          "label": "Microphones",
           "itemCount": null,
-          "ratingNumber": 903175
+          "ratingNumber": 178495
         },
         {
-          "id": 90,
-          "label": "Stage & Studio Cables",
+          "id": 26,
+          "label": "Microphones & Accessories",
           "itemCount": null,
-          "ratingNumber": 840511
+          "ratingNumber": 178495
         },
         {
-          "id": 19,
-          "label": "Drums & Percussion",
+          "id": 69,
+          "label": "Strings",
           "itemCount": null,
-          "ratingNumber": 824988
-        },
-        {
-          "id": 47,
-          "label": "Folk & World",
-          "itemCount": null,
-          "ratingNumber": 816204
-        },
-        {
-          "id": 139,
-          "label": "Condenser Microphones",
-          "itemCount": null,
-          "ratingNumber": 811081
-        },
-        {
-          "id": 51,
-          "label": "Electronic Music, DJ & Karaoke",
-          "itemCount": null,
-          "ratingNumber": 742493
-        },
-        {
-          "id": 56,
-          "label": "General Accessories",
-          "itemCount": null,
-          "ratingNumber": 729146
-        },
-        {
-          "id": 115,
-          "label": "Keyboards & MIDI",
-          "itemCount": null,
-          "ratingNumber": 688771
-        },
-        {
-          "id": 24,
-          "label": "Guitars",
-          "itemCount": null,
-          "ratingNumber": 688355
-        },
-        {
-          "id": 1,
-          "label": "All Electronics",
-          "itemCount": null,
-          "ratingNumber": 663774
+          "ratingNumber": 160758
         }
       ]
     }
