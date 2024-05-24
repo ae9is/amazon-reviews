@@ -3,13 +3,26 @@ NAME := amazonreviews
 GRAPHQL_API_IMAGE_ID = $(shell docker image ls | grep graphql | awk '{print $$3}' | head -n 1)
 MODEL_API_IMAGE_ID = $(shell docker image ls | grep model | awk '{print $$3}' | head -n 1)
 DB_PROCESS_ID = $(shell docker ps | grep postgres | awk '{print $$1}' | head -n 1)
+TESTDB_PROCESS_ID = $(shell docker ps | grep reviews-pg-test | awk '{print $$1}' | head -n 1)
 
 clean:
 	${GRADLE} clean
 
-test:
-	${GRADLE} test
-	pdm test
+test-env-up:
+	docker compose -f docker-compose-test.yml up -d 
+	bash docker-db-up.sh reviews-pg-test 1 1
+
+test-env-down:
+	bash docker-db-down.sh reviews-pg-test 1 1
+	docker compose -f docker-compose-test.yml down
+
+test-py:
+	MODEL_API_URL=http://localhost:5001 pdm test
+
+test-java:
+	SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5433/reviews MODEL_API_URL=http://localhost:5001 ${GRADLE} test --rerun-tasks
+
+test: test-env-up test-java test-py test-env-down
 
 build:
 	${GRADLE} build
@@ -36,6 +49,9 @@ docker-login:
 
 docker-bash-db:
 	docker exec --user postgres -it ${DB_PROCESS_ID} /bin/bash
+
+docker-bash-testdb:
+	docker exec --user postgres -it ${TESTDB_PROCESS_ID} /bin/bash
 
 docker-bash-graphql-api:
 	docker run -it --entrypoint /bin/bash ${GRAPHQL_API_IMAGE_ID}
