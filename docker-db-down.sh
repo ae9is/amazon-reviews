@@ -1,16 +1,29 @@
 #!/bin/bash
 # Export and drop database tables.
 # Executes against a running docker postgres container.
-DB_PROCESS_ID=`docker ps | grep postgres | awk '{print $1}' | head -n 1`
+container="${1:-postgres}"
+with_test_data="${2:-0}"
+force="${3:-0}"
+DB_PROCESS_ID=`docker ps | grep "${container}" | awk '{print $1}' | head -n 1`
 
-read -p "Really drop database \"${POSTGRES_DB}\" at Docker process \"${DB_PROCESS_ID}\" (y/N)?" choice
-case "${choice}" in
-  y|Y ) echo "Continuing...";;
-  n|N|* ) echo "Aborting!"; exit 0;;
-esac
+if [ "${force}" ]; then
+  echo "Creating and loading database \"${POSTGRES_DB}\" at Docker process \"${DB_PROCESS_ID}\" ..."
+else
+  read -p "Really drop database \"${POSTGRES_DB}\" at Docker process \"${DB_PROCESS_ID}\" (y/N)?" choice
+  case "${choice}" in
+    y|Y ) echo "Continuing...";;
+    n|N|* ) echo "Aborting!"; exit 0;;
+  esac
+fi
+
+if [ "${with_test_data}" ]; then
+  export_dir="src/test/resources/database/export"
+else
+  export_dir="data/export"
+fi
 
 # Make sure to fix permissions on your mounted volume if docker is run as root
-cp migrations/*.sql data/export || { echo "Cannot copy new migrations to docker mount point, quitting!"; exit 1; }
+cp migrations/*.sql "${export_dir}" || { echo "Cannot copy new migrations to docker mount point, quitting!"; exit 1; }
 
 started=`date`
 # Migrations run in reverse
