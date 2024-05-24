@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import amazonrev.review.ReviewImage;
+import amazonrev.config.Constants;
 import amazonrev.review.Review;
 import amazonrev.util.Log;
 
@@ -139,7 +140,7 @@ public class ReviewParser extends FileParser {
   }
 
   public static void main(String[] args) throws IOException {
-    final String dataFilename = "data/import/Musical_Instruments.jsonl";
+    final String dataFilename = Constants.getReviewsDataFilename();
     final String outputFolder = "data/import";
     parse(dataFilename, outputFolder);
   }

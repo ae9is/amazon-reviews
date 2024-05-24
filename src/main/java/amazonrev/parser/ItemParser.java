@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
+import amazonrev.config.Constants;
 import amazonrev.item.ItemAuthor;
 import amazonrev.item.ItemImage;
 import amazonrev.item.ItemVideo;
@@ -196,7 +197,7 @@ public class ItemParser extends FileParser {
   }
 
   public static void main(String[] args) throws IOException {
-    final String dataFilename = "data/import/meta_Musical_Instruments.jsonl";
+    final String dataFilename = Constants.getItemMetaDataFilename();
     final String outputFolder = "data/import";
     parse(dataFilename, outputFolder);
   }
