@@ -1,7 +1,7 @@
 FROM public.ecr.aws/lambda/python:3.12 as build
 # No python 3.12 yet in AL2023, so we use the Lambda team's image for now. 
 # ref: https://github.com/amazonlinux/amazon-linux-2023/issues/483
-# However, note to actually run on Lambda would need to swap out GPU torch for CPU-only in pyproject.toml.
+# To actually run on Lambda or other platforms without CUDA, swap out GPU torch for CPU-only.
 #FROM public.ecr.aws/amazonlinux/amazonlinux:2023 as build
 
 # Non-root user and group (only with AL2023 not Lambda base images)
@@ -27,8 +27,9 @@ ARG MODEL_DIR=${MODEL_DIR:-data/models/blair-roberta-base}
 COPY --chown=python:python "${MODEL_DIR}"/* ./amazonrev/model/
 
 # Project dependencies
-COPY --chown=python:python requirements.prod.txt ./
-RUN python3.12 -m pip install --no-cache-dir --disable-pip-version-check -U -r requirements.prod.txt
+ARG TORCH_VERSION=${TORCH_VERSION:-cpu}
+COPY --chown=python:python requirements.prod.${TORCH_VERSION}.txt ./
+RUN python3.12 -m pip install --no-cache-dir --disable-pip-version-check -U -r requirements.prod.${TORCH_VERSION}.txt
 
 # Copy project source
 COPY --chown=python:python src/main/python/amazonrev/*.py ./amazonrev/

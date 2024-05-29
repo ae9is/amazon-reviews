@@ -86,6 +86,12 @@ Open http://localhost:8080/graphiql?path=/graphql
 
 <img src="img/screenshot-reviews.png" width=400 />
 
+### GPU-accelerated containers
+
+To run the Python API inside a Docker container with CUDA enabled in PyTorch, the container host should setup Docker for CUDA.
+
+See: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html
+
 ## Test
 
 Build the Python API Docker image first using:

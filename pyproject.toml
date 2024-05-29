@@ -7,9 +7,11 @@ dependencies = [
     "numpy>=1.26.4",
     "fastapi>=0.111.0",
     "transformers>=4.40.2",
-    "pandas>=2.2.2",
-    # For CPU only torch, which is fine for the api (but too slow for generating embeddings for the database):
-    #"torch @ https://download.pytorch.org/whl/cpu-cxx11-abi/torch-2.3.0%2Bcpu.cxx11.abi-cp312-cp312-linux_x86_64.whl",
+    "pandas>=2.2.2"
+]
+
+[project.optional-dependencies]
+cuda = [
     # For GPU torch on Linux. Optional for api (limits runtime options, and much larger Docker image).
     "torch>=2.3.0",
     # For GPU torch 2.3.0. PDM resolves dependencies, but needed for production requirements for installing via pip.
@@ -23,19 +25,25 @@ dependencies = [
     "nvidia-cusolver-cu12==11.4.5.107",
     "nvidia-cusparse-cu12==12.1.0.106",
     "nvidia-nccl-cu12==2.20.5",
-    "nvidia-nvtx-cu12==12.1.105"
+    "nvidia-nvtx-cu12==12.1.105",
+]
+cpu = [
+    # For CPU only torch, which is fine for the api (but too slow for generating embeddings for the database):
+    "torch @ https://download.pytorch.org/whl/cpu-cxx11-abi/torch-2.3.0%2Bcpu.cxx11.abi-cp312-cp312-linux_x86_64.whl",
 ]
 
 [tool.pdm]
 distribution = false
 
 [tool.pdm.scripts]
-install-all = "pdm install -G:all"
+install-cuda = "pdm add -G cuda"
+install-cpu = "pdm add -G cpu"
+export-cuda = "pdm export --group cuda --prod -o requirements.prod.cuda.txt"
+export-cpu = "pdm export --group cpu --prod -o requirements.prod.cpu.txt"
 lint = "ruff check src test"
 format = "ruff format ."
 post_install = { shell = """
-  pdm export -o requirements.txt && 
-  pdm export --prod -o requirements.prod.txt
+  pdm export -o requirements.txt
 """ }
 clean = "rm -rf .venv .pdm-build .pdm-python .ruff_cache dist .pytest_cache"
 dev = "uvicorn --port 5000 --reload --app-dir src/main/python/amazonrev app:app"

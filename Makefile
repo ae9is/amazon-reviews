@@ -39,10 +39,14 @@ parse:
 embeddings:
 	pdm parser
 
-docker-build:
+docker-build: docker-build-java docker-build-py
+
+docker-build-java:
 	${GRADLE} bootBuildImage --imageName=${NAME}/graphql-api
+
+docker-build-py:
 	printf "PYTHON_ENV=${PYTHON_ENV}\nMODEL_DIR=./model\n" > .env.dockerfile
-	docker build -t ${NAME}/model-api --build-arg MODEL_DIR=${MODEL_DIR} -f Dockerfile .
+	docker build -t ${NAME}/model-api --build-arg MODEL_DIR=${MODEL_DIR} --build-arg TORCH_VERSION=${TORCH_VERSION} -f Dockerfile .
 
 docker-login:
 	aws ecr get-login-password --region ${AWS_REGION} --profile ${AWS_PROFILE} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
