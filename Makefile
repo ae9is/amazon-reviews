@@ -32,6 +32,7 @@ run:
 
 deps:
 	${GRADLE} dependencies
+	pdm install
 
 parse:
 	${GRADLE} runParser
