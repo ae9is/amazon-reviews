@@ -6,17 +6,13 @@ import torch
 import numpy as np
 import pandas as pd
 
+from lib.config import ITEMS_METADATA_FILE, EMBEDDINGS_FILE, COMPLETED_INDICES_FILE
 from lib.logger import log
 from lib.tensor import tensor_to_string
 
 
-ITEMS_METADATA_FILE = 'data/import/meta_Musical_Instruments.jsonl'
-EMBEDDINGS_FILE = 'data/import/item_embed.csv'
-COMPLETED_INDICES_FILE = 'data/import/item_embed_completed_indices.txt'
-
 RECORD_SEP = u'\x1e' # noqa
 UNIT_SEP = u'\x1f' # noqa
-
 CHUNK_SIZE = 200
 
 
