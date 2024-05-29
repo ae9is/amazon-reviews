@@ -19,3 +19,5 @@ The export+drop and create+load steps have been combined here for convenience, a
 Foreign key constraints are used, along with bigint primary keys (instead of uuid/varchar). This could be changed to support sharding or to ease complex migrations.
 
 If you prefer, you may use the migrate tool instead of the shell scripts: https://github.com/golang-migrate/migrate
+
+In [docker-db-up.sh](/docker-db-up.sh), *.test.sql versions of files replace their *.sql counterparts for testing setup only.

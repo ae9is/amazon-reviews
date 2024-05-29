@@ -28,6 +28,10 @@ fi
 
 # Make sure to fix permissions on your mounted volume if docker is run as root
 cp migrations/*.sql "${export_dir}" || { echo "Cannot copy new migrations to docker mount point, quitting!"; exit 1; }
+if [ "${with_test_data}" ]; then
+  # Handle test-only database creation differences
+  rename --force 's/.test.sql/.sql/' "${export_dir}"/*.test.sql
+fi
 
 if [ "${force}" ]; then
   wipe=1
