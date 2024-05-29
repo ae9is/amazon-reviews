@@ -44,7 +44,7 @@ started=`date`
 for scriptpath in migrations/*.up.sql; do
   script=`basename "${scriptpath}"`
   echo "Running script: ${script} at `date`..."
-  docker exec --user postgres -it ${DB_PROCESS_ID} psql -d ${POSTGRES_DB} -f "/export/${script}"
+  docker exec --user postgres ${DB_PROCESS_ID} psql -d ${POSTGRES_DB} -f "/export/${script}"
 done
 stopped=`date`
 echo "Started at: ${started}"
