@@ -12,7 +12,7 @@ clean:
 #  is needed for CI workflow. (Docker compose exits before the containers are fully up.)
 test-env-up:
 	docker compose -f docker-compose-test.yml up -d 
-	sleep 1
+	sleep 5
 	bash docker-db-up.sh reviews-pg-test 1 1
 
 test-env-down:
