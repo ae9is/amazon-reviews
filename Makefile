@@ -8,21 +8,28 @@ TESTDB_PROCESS_ID = $(shell docker ps | grep reviews-pg-test | awk '{print $$1}'
 clean:
 	${GRADLE} clean
 
+# A small delay between bringing up docker compose services and executing the database scripts
+#  is needed for CI workflow. (Docker compose exits before the containers are fully up.)
 test-env-up:
 	docker compose -f docker-compose-test.yml up -d 
+	sleep 5
 	bash docker-db-up.sh reviews-pg-test 1 1
 
 test-env-down:
 	bash docker-db-down.sh reviews-pg-test 1 1
 	docker compose -f docker-compose-test.yml down
 
-test-py:
+test-py: test-env-up
 	MODEL_API_URL=http://localhost:5001 pdm test
 
-test-java:
+test-java: test-env-up
 	SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5433/reviews MODEL_API_URL=http://localhost:5001 ${GRADLE} test --rerun-tasks
 
-test: test-env-up test-java test-py test-env-down
+test-ci: test-java test-py
+
+# In make v4.4+ can just replace this with .WAIT
+test: test-env-up test-ci WAIT test-env-down
+WAIT: test-java test-py
 
 build:
 	${GRADLE} build
@@ -32,6 +39,10 @@ run:
 
 deps:
 	${GRADLE} dependencies
+	pdm install
+
+get-model:
+	pdm get-model
 
 parse:
 	${GRADLE} runParser
@@ -39,10 +50,14 @@ parse:
 embeddings:
 	pdm parser
 
-docker-build:
+docker-build: docker-build-java docker-build-py
+
+docker-build-java:
 	${GRADLE} bootBuildImage --imageName=${NAME}/graphql-api
+
+docker-build-py:
 	printf "PYTHON_ENV=${PYTHON_ENV}\nMODEL_DIR=./model\n" > .env.dockerfile
-	docker build -t ${NAME}/model-api --build-arg MODEL_DIR=${MODEL_DIR} -f Dockerfile .
+	docker build -t ${NAME}/model-api --build-arg MODEL_DIR=${MODEL_DIR} --build-arg TORCH_VERSION=${TORCH_VERSION} -f Dockerfile .
 
 docker-login:
 	aws ecr get-login-password --region ${AWS_REGION} --profile ${AWS_PROFILE} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com

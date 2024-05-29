@@ -2,8 +2,8 @@
 # Export and drop database tables.
 # Executes against a running docker postgres container.
 container="${1:-postgres}"
-with_test_data="${2:-0}"
-force="${3:-0}"
+with_test_data=$2
+force=$3
 DB_PROCESS_ID=`docker ps | grep "${container}" | awk '{print $1}' | head -n 1`
 
 if [ "${force}" ]; then
@@ -30,7 +30,7 @@ started=`date`
 for scriptpath in `ls -r migrations/*.down.sql`; do
   script=`basename "${scriptpath}"`
   echo "Running script: ${script} at `date`..."
-  docker exec --user postgres -it ${DB_PROCESS_ID} psql -d ${POSTGRES_DB} -f "/export/${script}"
+  docker exec --user postgres ${DB_PROCESS_ID} psql -d ${POSTGRES_DB} -f "/export/${script}"
 done
 stopped=`date`
 echo "Started at: ${started}"

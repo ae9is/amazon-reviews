@@ -53,6 +53,8 @@ public class RecommendTests {
     Map<String, Object> params = new HashMap<>();
     params.put("cursor", cursor);
     params.put("limit", limit);
+    // Note: the cursor implementation for this endpoint contains a computed floating point value,
+    //  so we can't check against an expected cursor value in this test.
     tester
       .document(TestUtils.documentFor(document))
       .variable("queryText", queryText)
