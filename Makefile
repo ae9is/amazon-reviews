@@ -34,6 +34,9 @@ deps:
 	${GRADLE} dependencies
 	pdm install
 
+get-model:
+	pdm get-model
+
 parse:
 	${GRADLE} runParser
 

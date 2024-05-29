@@ -7,7 +7,8 @@ dependencies = [
     "numpy>=1.26.4",
     "fastapi>=0.111.0",
     "transformers>=4.40.2",
-    "pandas>=2.2.2"
+    "pandas>=2.2.2",
+    "huggingface-hub>=0.23.2",
 ]
 
 [project.optional-dependencies]
@@ -51,6 +52,7 @@ test = "python -m pytest" # Depends on running dev server
 parser = { shell = """
   python -u src/main/python/amazonrev/item_parser.py 2>&1 | tee parser-`date -Iminutes`.log
 """ }
+get-model = "python -u src/main/python/amazonrev/get_model.py"
 
 [tool.pdm.dev-dependencies]
 dev = [
