@@ -2,8 +2,8 @@
 # Export and drop database tables.
 # Executes against a running docker postgres container.
 container="${1:-postgres}"
-with_test_data="${2:-0}"
-force="${3:-0}"
+with_test_data=$2
+force=$3
 DB_PROCESS_ID=`docker ps | grep "${container}" | awk '{print $1}' | head -n 1`
 
 if [ "${force}" ]; then

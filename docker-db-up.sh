@@ -3,8 +3,8 @@
 # Executes against a running docker postgres container.
 # Make sure to generate loadable data files first by running `make parse`.
 container="${1:-postgres}"
-with_test_data="${2:-0}"
-force="${3:-0}"
+with_test_data=$2
+force=$3
 DB_PROCESS_ID=`docker ps | grep "${container}" | awk '{print $1}' | head -n 1`
 
 if [ "${force}" ]; then
