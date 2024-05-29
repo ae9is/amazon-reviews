@@ -8,19 +8,27 @@ TESTDB_PROCESS_ID = $(shell docker ps | grep reviews-pg-test | awk '{print $$1}'
 clean:
 	${GRADLE} clean
 
+# A small delay between bringing up docker compose services and executing the database scripts
+#  is needed for CI workflow. (Docker compose exits before the containers are fully up.)
 test-env-up:
 	docker compose -f docker-compose-test.yml up -d 
+	sleep 1
 	bash docker-db-up.sh reviews-pg-test 1 1
+
 test-env-down:
 	bash docker-db-down.sh reviews-pg-test 1 1
 	docker compose -f docker-compose-test.yml down
+
 test-py: test-env-up
 	MODEL_API_URL=http://localhost:5001 pdm test
+
 test-java: test-env-up
 	SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5433/reviews MODEL_API_URL=http://localhost:5001 ${GRADLE} test --rerun-tasks
+
 test-ci: test-java test-py
-test: test-env-up test-ci WAIT test-env-down
+
 # In make v4.4+ can just replace this with .WAIT
+test: test-env-up test-ci WAIT test-env-down
 WAIT: test-java test-py
 
 build:
@@ -43,8 +51,10 @@ embeddings:
 	pdm parser
 
 docker-build: docker-build-java docker-build-py
+
 docker-build-java:
 	${GRADLE} bootBuildImage --imageName=${NAME}/graphql-api
+
 docker-build-py:
 	printf "PYTHON_ENV=${PYTHON_ENV}\nMODEL_DIR=./model\n" > .env.dockerfile
 	docker build -t ${NAME}/model-api --build-arg MODEL_DIR=${MODEL_DIR} --build-arg TORCH_VERSION=${TORCH_VERSION} -f Dockerfile .
