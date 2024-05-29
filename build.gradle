@@ -50,3 +50,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+test {
+  // ref: https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.logging.TestLogging.html
+  testLogging.showStandardStreams = true
+}
