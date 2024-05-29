@@ -1,0 +1,88 @@
+name: main
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # Manual run from GitHub UI
+  workflow_dispatch:
+  # Wednesdays at 0400
+#  schedule:
+#    - cron: '0 4 * * 3'
+
+jobs:
+  build-and-test:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [17]
+    env:
+      ENV_FILE: .env
+      # Below should be overwritten by .env
+      TORCH_VERSION: cpu
+      MODEL_NAME: hyp1231/blair-roberta-base
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Load environment variables
+      run: cat ${{ env.ENV_FILE }} >> $GITHUB_ENV
+
+    - name: Use Java ${{ matrix.java-version }}
+      uses: actions/setup-java@v2
+      with:
+        java-version: ${{ matrix.java-version }}
+        cache: 'gradle'
+        distribution: 'liberica'
+
+    - name: Setup pdm
+      uses: pdm-project/setup-pdm@v4
+    - name: Restore cached venv
+      id: cache-venv-restore
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          .venv
+        key: venv-${{ runner.os }}-${{ hashFiles('pdm.lock') }}
+        restore-keys: |
+          venv-${{ runner.os }}-
+          venv-
+    - name: Install dependencies
+      run: |
+        pdm install
+        pdm install-${{ env.TORCH_VERSION }}
+    - name: Save venv to cache
+      id: cache-venv-save
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          .venv
+        key: ${{ steps.cache-venv-restore.outputs.cache-primary-key }}
+
+    - name: Restore cached model files
+      id: cache-model-restore
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          data/models
+        key: models-${{ env.MODEL_NAME }}
+    - name: Download model files
+      run: make get-model
+    - name: Save model files to cache
+      id: cache-model-save
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          data/models
+        key: ${{ steps.cache-model-restore.outputs.cache-primary-key }}
+
+    - name: Install
+      run: make deps
+
+    - name: Build
+      run: make docker-build
+
+    - name: Test
+      run: make test
