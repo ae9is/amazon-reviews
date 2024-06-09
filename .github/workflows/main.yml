@@ -11,6 +11,9 @@ on:
 #  schedule:
 #    - cron: '0 4 * * 3'
 
+permissions:
+  contents: write
+
 jobs:
   build-and-test:
     timeout-minutes: 10
