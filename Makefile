@@ -62,6 +62,9 @@ docker-build-py:
 docker-login:
 	aws ecr get-login-password --region ${AWS_REGION} --profile ${AWS_PROFILE} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
 
+docker-login-github:
+	echo ${GITHUB_TOKEN} | docker login --username ${GITHUB_REPOSITORY_OWNER} --password-stdin ghcr.io
+
 docker-bash-db:
 	docker exec --user postgres -it ${DB_PROCESS_ID} /bin/bash
 
@@ -79,13 +82,13 @@ docker-tag:
 	docker tag ${MODEL_API_IMAGE_ID} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/model-api:${RELEASE_TAG}
 
 docker-tag-github:
-	docker tag ${GRAPHQL_API_IMAGE_ID} ghcr.io/ae9is/${NAME}-graphql-api:${RELEASE_TAG}
-	docker tag ${MODEL_API_IMAGE_ID} ghcr.io/ae9is/${NAME}-model-api:${RELEASE_TAG}
+	docker tag ${GRAPHQL_API_IMAGE_ID} ghcr.io/${GITHUB_REPOSITORY_OWNER}/${NAME}-graphql-api:${RELEASE_TAG}
+	docker tag ${MODEL_API_IMAGE_ID} ghcr.io/${GITHUB_REPOSITORY_OWNER}/${NAME}-model-api:${RELEASE_TAG}
 
 docker-push:
 	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/graphql-api:${RELEASE_TAG}
 	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/model-api:${RELEASE_TAG}
 
 docker-push-github:
-	docker push ghcr.io/ae9is/${NAME}-graphql-api:${RELEASE_TAG}
-	docker push ghcr.io/ae9is/${NAME}-model-api:${RELEASE_TAG}
+	docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/${NAME}-graphql-api:${RELEASE_TAG}
+	docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/${NAME}-model-api:${RELEASE_TAG}
