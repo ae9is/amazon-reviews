@@ -13,8 +13,8 @@ services:
     #  ref: https://github.com/docker-library/docs/tree/master/postgres#arbitrary---user-notes
     env_file:
       - .env
-    environment:
-      POSTGRES_USER: postgres
+#    environment:
+#      POSTGRES_USER: postgres
 #      POSTGRES_PASSWORD: reviews
 #      POSTGRES_DB: reviews
     volumes:
