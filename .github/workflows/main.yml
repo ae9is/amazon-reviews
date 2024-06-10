@@ -129,14 +129,12 @@ jobs:
       if: steps.isRelease.outputs.value
       env:
         GITHUB_REPOSITORY_OWNER: ${{ github.repository.owner }}
-        #RELEASE_TAG: ${{ steps.getVersion.outputs.value }}
-        RELEASE_TAG: latest
+        RELEASE_TAG: ${{ steps.getVersion.outputs.value }}
       run: make docker-tag-github
 
     - name: Push Docker build to container registry
       if: steps.isRelease.outputs.value
       env:
         GITHUB_REPOSITORY_OWNER: ${{ github.repository.owner }}
-        #RELEASE_TAG: ${{ steps.getVersion.outputs.value }}
-        RELEASE_TAG: latest
+        RELEASE_TAG: ${{ steps.getVersion.outputs.value }}
       run: make docker-push-github
