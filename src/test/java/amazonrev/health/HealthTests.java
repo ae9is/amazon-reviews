@@ -16,6 +16,6 @@ class HealthTests {
 
   @Test
   void shouldPassHealthCheck() throws Exception {
-    client.get().uri("/healthz").exchange().expectStatus().isOk();
+    client.get().uri("/v1/healthz").exchange().expectStatus().isOk();
   }
 }
