@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'amazonrev'
-version = '1.0.0'
+version = '1.0.1'
 
 springBoot {
 	mainClass = "amazonrev.App"
