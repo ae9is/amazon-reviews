@@ -41,9 +41,11 @@ COPY --chown=python:python src/main/python/amazonrev/lib/*.py ./amazonrev/lib/
 # Note: docker just silently fails to create hidden files on the container (using COPY, RUN cp, RUN mv, etc...).
 COPY --chown=python:python .env.dockerfile ./amazonrev/env
 
+ENV NUM_WORKERS=1
+ENV GUNICORN_CMD_ARGS="--bind :5000 --workers=${NUM_WORKERS} --timeout 0"
 EXPOSE 5000
 ENTRYPOINT ["gunicorn", "--worker-class", "uvicorn.workers.UvicornWorker", "--chdir", "amazonrev", "app:app"]
 # Note: uvicorn workers are async, so we disable --timeout
 # ref: https://docs.gunicorn.org/en/stable/settings.html#timeout
-CMD ["--bind", ":5000", "--workers=4", "--timeout", "0"]
+CMD ["${GUNICORN_CMD_ARGS}"]
 HEALTHCHECK --start-period=5s CMD curl -f http://localhost:5000/v1/healthz
