@@ -56,7 +56,7 @@ docker-build-java:
 	${GRADLE} bootBuildImage --imageName=${NAME}/graphql-api
 
 docker-build-py:
-	printf "PYTHON_ENV=${PYTHON_ENV}\nMODEL_DIR=./model\n" > .env.dockerfile
+	printf "PYTHON_ENV=${PYTHON_ENV}\nMODEL_DIR=./model\nUSE_QUANTIZATION=${USE_QUANTIZATION}\n" > .env.dockerfile
 	docker build -t ${NAME}/model-api --build-arg MODEL_DIR=${MODEL_DIR} --build-arg TORCH_VERSION=${TORCH_VERSION} -f Dockerfile .
 
 docker-login:

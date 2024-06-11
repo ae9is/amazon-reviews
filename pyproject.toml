@@ -3,10 +3,17 @@ name = "amazonrev"
 version = "1.0.2"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    # Quanto integration currently broken in all releases of transformers
+    "transformers @ https://github.com/ae9is/transformers/releases/download/v4.42.0/transformers-4.42.0-py3-none-any.whl",
+    # For transformers:
+    "bitsandbytes>=0.43.1",
+    "accelerate>=0.31.0",
+    "quanto>=0.2.0",
+    "setuptools>=70.0.0",
+    # Rest:
     "python-dotenv>=1.0.1",
     "numpy>=1.26.4",
     "fastapi>=0.111.0",
-    "transformers>=4.40.2",
     "pandas>=2.2.2",
     "huggingface-hub>=0.23.2",
 ]
