@@ -1,6 +1,6 @@
 [project]
 name = "amazonrev"
-version = "1.0.2"
+version = "1.1.0"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     # Quanto integration currently broken in all releases of transformers
