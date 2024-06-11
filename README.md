@@ -12,7 +12,7 @@ Also contains a Python API for running the [BLaIR model](https://github.com/hyp1
 
 The project has been developed on Linux for Linux-based Docker image deployment. Your mileage may vary with other platforms.
 
-Running the Python API requires CUDA 12.1, or some editing of the requirements in [pyproject.toml](pyproject.toml). The Python API also requires generation of some embeddings which are loaded into the database. This task effectively requires GPU-enabled PyTorch; it's very slow without.
+The Python API requires generation of some embeddings which are loaded into the database. This task effectively requires GPU-enabled PyTorch; it's very slow without.
 
 ### Environment variables
 
@@ -31,6 +31,10 @@ Uses Python 3.12. To easily switch between versions of python, consider setting 
 ```bash
 pip install pipx
 pipx install pdm
+pdm install
+pdm install-cpu
+# OR
+pdm install-cuda
 ```
 
 ### Java
@@ -39,6 +43,7 @@ Uses Java 17+ with Gradle. Gradle is included in the project files already.
 
 ```
 apt install openjdk-17-jdk
+make deps
 ```
 
 ## Data 
@@ -94,13 +99,13 @@ See: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/in
 
 ## Test
 
-Build the Python API Docker image first using:
+Build the Docker images first using:
 
 ```bash
 make docker-build
 ```
 
-Then run using:
+Then run:
 
 ```bash
 make test
