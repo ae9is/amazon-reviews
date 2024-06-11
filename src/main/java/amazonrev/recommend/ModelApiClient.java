@@ -22,7 +22,7 @@ import amazonrev.util.exception.NotFoundException;
 @Component
 public class ModelApiClient {
 
-  final int timeout = 5000;
+  final int timeout = Constants.getModelApiTimeout();
   WebClient webClient;
   private final NotFoundException modelApiDisabledException = new NotFoundException("Model API is not enabled");
 
