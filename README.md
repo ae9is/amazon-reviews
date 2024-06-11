@@ -129,3 +129,25 @@ make docker-bash-db
 postgres@...:/$ psql reviews
 reviews=# \d
 ```
+
+## Production Demo
+
+To spin up a live demo using [Render](https://render.com):
+
+1. Issue a release commit which causes the GitHub actions workflow to tag and publish the API Docker images to GitHub Packages.
+
+1. Create Render account.
+
+1. Create two web services for each API (Java GraphQL API, Python model API), and set environment variables as appropriate referring to:
+    - [.env.graphql.demo](.env.graphql.demo)
+    - [.env.model.demo](.env.model.demo)
+
+1. Create a Postgres database service. Make sure your local Postgres fits well within 1GB and load it into the remote Render database using:
+
+    ```bash
+    docker compose up
+    make docker-bash-db
+    pg_dump --format=custom --no-acl --no-owner --quote-all-identifiers --verbose --file /export/backup.dump --exclude-schema=pg_catalog -h localhost -U postgres reviews 
+    # Modify this, inserting the external connection string for your database from Render
+    pg_restore --verbose --no-acl --no-owner -d postgres://reviews:supersecretgeneratedpassword@instancesubdomain.region-postgres.render.com/reviews_abcd /export/backup.dump
+    ```
