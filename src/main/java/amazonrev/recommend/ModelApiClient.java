@@ -11,19 +11,20 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientException;
-
-import amazonrev.config.Constants;
 import reactor.netty.http.client.HttpClient;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 
+import amazonrev.config.Constants;
+import amazonrev.util.exception.NotFoundException;
+
 @Component
 public class ModelApiClient {
 
   final int timeout = 5000;
-
   WebClient webClient;
+  private final NotFoundException modelApiDisabledException = new NotFoundException("Model API is not enabled");
 
   public ModelApiClient() {
     // Custom http client underlying web client in order to set shorter timeouts
@@ -32,7 +33,7 @@ public class ModelApiClient {
         .responseTimeout(Duration.ofMillis(timeout))
         .doOnConnected(con -> 
             con.addHandlerLast(new ReadTimeoutHandler(timeout, TimeUnit.MILLISECONDS))
-               .addHandlerLast(new WriteTimeoutHandler(timeout, TimeUnit.MILLISECONDS)));
+              .addHandlerLast(new WriteTimeoutHandler(timeout, TimeUnit.MILLISECONDS)));
     webClient = WebClient.builder()
         .clientConnector(new ReactorClientHttpConnector(httpClient))
         .baseUrl(Constants.getModelApiUrl())
@@ -40,6 +41,9 @@ public class ModelApiClient {
   }
 
   HashMap<String, ?> post(String path, Object body) throws WebClientException {
+    if (!Constants.isModelApiEnabled()) {
+      throw modelApiDisabledException;
+    }
     HashMap<String, ?> resp = webClient.post()
         .uri(path)
         .contentType(MediaType.APPLICATION_JSON)
