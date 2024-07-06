@@ -55,9 +55,14 @@ docker-build: docker-build-java docker-build-py
 docker-build-java:
 	${GRADLE} bootBuildImage --imageName=${NAME}/graphql-api
 
-docker-build-py:
-	printf "PYTHON_ENV=${PYTHON_ENV}\nMODEL_DIR=./model\nUSE_QUANTIZATION=${USE_QUANTIZATION}\n" > .env.dockerfile
+docker-build-py: prep-docker-env
 	docker build -t ${NAME}/model-api --build-arg MODEL_DIR=${MODEL_DIR} --build-arg TORCH_VERSION=${TORCH_VERSION} -f Dockerfile .
+
+prep-docker-env:
+	printf "PYTHON_ENV=${PYTHON_ENV}\nMODEL_DIR=./model\nUSE_QUANTIZATION=${USE_QUANTIZATION}\nHF_HOME=/tmp\n" > .env.dockerfile
+
+sam-build-py: prep-docker-env
+	sam build
 
 docker-login:
 	aws ecr get-login-password --region ${AWS_REGION} --profile ${AWS_PROFILE} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
@@ -78,8 +83,8 @@ docker-bash-model-api:
 	docker run -it --entrypoint /bin/bash ${MODEL_API_IMAGE_ID}
 
 docker-tag:
-	docker tag ${GRAPHQL_API_IMAGE_ID} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/graphql-api:${RELEASE_TAG}
-	docker tag ${MODEL_API_IMAGE_ID} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/model-api:${RELEASE_TAG}
+#	docker tag ${GRAPHQL_API_IMAGE_ID} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/graphql-api:${RELEASE_TAG}
+#	docker tag ${MODEL_API_IMAGE_ID} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/model-api:${RELEASE_TAG}
 	docker tag ${GRAPHQL_API_IMAGE_ID} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/graphql-api:latest
 	docker tag ${MODEL_API_IMAGE_ID} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/model-api:latest
 
@@ -90,8 +95,8 @@ docker-tag-github:
 	docker tag ${MODEL_API_IMAGE_ID} ghcr.io/${GITHUB_REPOSITORY_OWNER}/${NAME}-model-api:latest
 
 docker-push:
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/graphql-api:${RELEASE_TAG}
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/model-api:${RELEASE_TAG}
+#	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/graphql-api:${RELEASE_TAG}
+#	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/model-api:${RELEASE_TAG}
 	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/graphql-api:latest
 	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NAME}/model-api:latest
 

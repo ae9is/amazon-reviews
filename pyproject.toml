@@ -3,8 +3,7 @@ name = "amazonrev"
 version = "1.2.0"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    # Quanto integration currently broken in all releases of transformers
-    "transformers @ https://github.com/ae9is/transformers/releases/download/v4.42.0/transformers-4.42.0-py3-none-any.whl",
+    "transformers>=4.42.3",
     # For transformers:
     "bitsandbytes>=0.43.1",
     "accelerate>=0.31.0",
@@ -55,11 +54,30 @@ post_install = { shell = """
 """ }
 clean = "rm -rf .venv .pdm-build .pdm-python .ruff_cache dist .pytest_cache"
 dev = "uvicorn --port 5000 --reload --app-dir src/main/python/amazonrev app:app"
-test = "python -m pytest" # Depends on running dev server
 parser = { shell = """
   python -u src/main/python/amazonrev/item_parser.py 2>&1 | tee parser-`date -Iminutes`.log
 """ }
 get-model = "python -u src/main/python/amazonrev/get_model.py"
+
+# Build, deploy
+pre_sam-build = "sam validate"
+sam-build = "sam build"
+pre_sam-deploy = "pdm run sam-build"
+sam-deploy = "sam deploy --guided"
+post_sam-deploy = "sam list endpoints --output json"
+docker-login = { shell = """
+  aws ecr get-login-password --region $AWS_REGION | 
+  docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+""" }
+
+# Local testing
+sam-local = "sam local start-lambda"
+fwd-sam-local = "flask --app src/test/python/localapi/app run"
+test = "python -m pytest" # Depends on running sam-local and forwarder
+
+# Aliases
+local = "pdm sam-local"
+fwd = "pdm fwd-sam-local"
 
 [tool.pdm.dev-dependencies]
 dev = [
@@ -67,6 +85,7 @@ dev = [
     "pytest>=8.0.0",
     "uvicorn[standard]>=0.27.0.post1",
     "requests>=2.31.0",
+    "flask>=3.0.3",
 ]
 
 [tool.ruff]

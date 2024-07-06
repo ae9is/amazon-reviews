@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Amazon Reviews embedding api
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    MemorySize: 128
+    Timeout: 3
+    Architectures:
+      - x86_64
+
+Resources:
+  # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+  embeddingCreate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: amazonreviews-embedding-create
+      #MemorySize: 10240 # Max, or lower depending on account. 1769 = 1 vCPU.
+      #Timeout: 900 # Max
+      MemorySize: 1770
+      Timeout: 30
+      PackageType: Image
+      FunctionUrlConfig:
+        AuthType: AWS_IAM
+      Environment:
+        Variables:
+          HF_HOME: /tmp
+    Metadata:
+      DockerContext: ./
+      Dockerfile: Dockerfile
+      DockerTag: amazonreviews-model-api
