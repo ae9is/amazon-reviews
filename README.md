@@ -137,7 +137,9 @@ reviews=# \d
 
 ## Production Demo
 
-To spin up a live demo using [Render](https://render.com):
+### Deployment
+
+To spin up a free live demo using [Render](https://render.com):
 
 1. Issue a release commit which causes the GitHub actions workflow to tag and publish the API Docker images to GitHub Packages.
 
@@ -156,3 +158,81 @@ To spin up a live demo using [Render](https://render.com):
     # Modify this, inserting the external connection string for your database from Render
     pg_restore --verbose --no-acl --no-owner -d postgres://reviews:supersecretgeneratedpassword@instancesubdomain.region-postgres.render.com/reviews_abcd /export/backup.dump
     ```
+
+### Caveats
+
+- Free tier instances spin down on Render, i.e. it takes a minute after the first request to each API (graphql API, model API) for it to be live again
+- `itemSummariesByQuery` uses the model API behind scenes, and will error out for a bit until the model API goes live again
+- The model API is quantized for the demo and the recommendation results are somewhat lower quality
+
+### Example queries
+
+#### Example 1
+
+**_Query_**
+
+```gql
+query reviewsByAsin($asin: String!, $params: ReviewPaginationInput) {
+  reviewsByAsin(asin: $asin, params: $params) {
+    cursor
+    list {
+      asin
+      helpfulVote
+      id
+      images {
+        attachmentType
+        id
+        largeImageURL
+        mediumImageURL
+        smallImageURL
+      }
+      parentAsin
+      rating
+      text
+      timestamp
+      title
+      userID
+      verifiedPurchase
+    }
+  }
+}
+```
+
+**_Variables_**
+
+```json
+{
+  "asin": "B0BSGM6CQ9",
+  "params": {
+  	"limit": 5,
+    "sort": "NEWEST"
+  }
+}
+```
+
+#### Example 2
+
+**_Query_**
+
+```gql
+query itemSummariesByQuery($queryText: String!, $limit: Int) {
+  itemSummariesByQuery(queryText: $queryText, limit: $limit) {
+    id
+    title
+    averageRating
+    ratingNumber
+    price
+    store
+    parentAsin
+  }
+}
+```
+
+**_Variables_**
+
+```json
+{
+  "queryText": "I need a quiet instrument that outputs to a MIDI interface",
+  "limit": 5
+}
+```
